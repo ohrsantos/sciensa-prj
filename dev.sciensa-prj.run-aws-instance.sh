@@ -7,7 +7,7 @@ SCRIPT_NAME="run-aws-instance.template"
 #instance launch. Note that it contains variables and container run command
 #if container will not be used, dissmis those parametrization accordantly
 ################################################################################
-VERSION="0.02a"
+VERSION="0.03a"
 AUTHOR="Orlando Hehl Rebelo dos Santos"
 DATE_INI="14-01-2018"
 DATE_END="23-01-2018"
@@ -61,16 +61,19 @@ user_data=(
 #Update the installed packages and package cache on your instance."
 "yum update -y"
 
-#set locale"
+#set locale
 "localectl set-locale LANG=en_US.utf8"
 
-#Install the most recent Docker Community Edition package."
+#Ksh93 for professional shell scripts... Yeah, ksh rocks!!!
+"yum install -y ksh"
+
+#Install the most recent Docker Community Edition package.
 "yum install -y docker"
 
-#Add the ec2-user to the docker group so you can execute Docker commands without using sudo."
+#Add the ec2-user to the docker group so you can execute Docker commands without using sudo.
 "usermod -a -G docker ec2-user"
 
-#Start the Docker service."
+#Start the Docker service.
 "service docker start"
 
 #Automatic docker service startup
