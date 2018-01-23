@@ -51,7 +51,6 @@ res.writeHead(200, {'Content-Type': 'text/html'});
         case "insert":
             //con.query("INSERT INTO messages (lang, content, author) VALUES ?", [records], function (err, result, fields) {
                 //if (err) throw err;
-                //console.log(result);
             //});
             res.write('<h4> Rescurso ainda nao implementado</h4>');
             res.end('</body></html>');
