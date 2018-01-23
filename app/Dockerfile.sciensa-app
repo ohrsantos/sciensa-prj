@@ -1,0 +1,11 @@
+FROM node:latest
+MAINTAINER Orlando Hehl Rebelo dos Santos
+RUN apt-get update 
+RUN apt-get update && apt-get install -y lsof vim-tiny
+ENV APP_ENV=DEV
+COPY  .  /var/www
+WORKDIR /var/www
+RUN npm install mysql
+RUN npm install -g nodemon
+ENTRYPOINT nodemon app
+EXPOSE 3000
