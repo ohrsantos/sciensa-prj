@@ -58,7 +58,7 @@ user_data=(
 
 "#!/bin/bash"
 
-#Update the installed packages and package cache on your instance."
+#Update the installed packages and package cache on your instance.
 "yum update -y"
 
 #set locale
