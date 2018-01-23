@@ -42,7 +42,7 @@ done
 
 shift $(($OPTIND - 1))
 
-if curl ${HOST}:${PORT}; then
+if curl ${HOST}:${PORT} >/dev/null 2>&1; then
    exit 0
 else
    exit 1
