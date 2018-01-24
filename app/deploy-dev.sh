@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd app
+
 action=${1}
 
 HOST=ec2-34-239-104-53.compute-1.amazonaws.com
