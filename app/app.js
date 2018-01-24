@@ -1,8 +1,8 @@
 var http = require('http');
 var url = require('url');
-ar mysql = require('mysql');
+var mysql = require('mysql');
 
-var app_version='0.032a'
+var app_version='0.033a'
 
 var db_host="sciensa-db-instance.cbfgofnkvvl3.us-east-1.rds.amazonaws.com";
 var connected=false;
