@@ -21,7 +21,7 @@ function stop {
 }
 
 function start {
-    if git pull; then
+    if git pull https://github.com/ohrsantos/sciensa-prj.git; then
         echo ">>>> Codigos da aplicacao atualizados com sucesso!"
     else
         echo "git pull, falhou!!!"
