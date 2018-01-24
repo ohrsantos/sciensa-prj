@@ -45,7 +45,7 @@ case $action in
         echo "----------------------------------"
         start
         ;;
-    "restart" )
+    "update" )
         echo "----------------------------------"
         echo "      DEPLOYING $APP_ENV "
         echo "----------------------------------"
