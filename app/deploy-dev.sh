@@ -5,7 +5,7 @@ action=${1}
 HOST=ec2-34-239-104-53.compute-1.amazonaws.com
 
 function stop {
-    if docker stop -t5 sciensa-app-dev; then
+    if docker stop -t3 sciensa-app-dev; then
         docker rmi -f ohrsan/node-sciensa-prj:dev || exit 2
     else
         exit 1
