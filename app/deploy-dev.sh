@@ -1,5 +1,5 @@
 #!/bin/bash
-echo ">>> deply-dev v:0.2a"
+echo ">>> deploy-dev v:0.2a"
 cd app
 
 action=${1}
@@ -10,8 +10,8 @@ APP_PORT=3000
 function stop {
     echo ">>> Parando container sciensa-app-dev ..."
     if docker stop -t3 sciensa-app-dev; then
-    echo ">>> Container parado com sucesso!"
-    echo ">>> Removendo imagem ..."
+        echo ">>> Container parado com sucesso!"
+        echo ">>> Removendo imagem ..."
         docker rmi -f ohrsan/node-sciensa-prj:dev || exit 2
     else
         exit 1
