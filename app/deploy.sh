@@ -4,9 +4,9 @@ cd app
 action=${1}
 
 export APP_ENV=${2}
-HOST="${4}"
-export PUBLIC_DNS=$HOST
-APP_PORT=${3}
+#HOST="${4}"
+export PUBLIC_DNS=${3}
+APP_PORT=${4}
 
 echo ">>>> deploy-${APP_ENV} v:0.32a"
 
