@@ -7,7 +7,7 @@ export APP_ENV=$(echo ${2} | tr '[:lower:]' '[:upper:]')
 export PUBLIC_DNS=${3}
 APP_PORT=${4}
 
-echo ">>>> deploy-${APP_ENV} v:0.32a"
+echo ">>>> deploy-${APP_ENV} v:0.33a"
 
 function stop {
     echo ">>>> Parando container sciensa-app-${APP_ENV} ..."
