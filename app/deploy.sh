@@ -21,6 +21,12 @@ function stop {
 }
 
 function start {
+    if git pull; then
+        echo ">>>> Codigos da aplicacao atualizados com sucesso!"
+    else
+        echo "git pull, falhou!!!"
+        exit 5
+    fi
     echo ">>>> Construindo a imagem com o codigo atualizado..."
     if docker  build -f Dockerfile.sciensa-app -t ohrsan/node-sciensa-prj:${APP_ENV} .; then
         echo ">>>> Imagem construida com sucesso!"
