@@ -1,5 +1,5 @@
 #!/bin/bash
-echo ">>> deploy-prod v:0.2a"
+echo ">>> deploy-prod v:0.31a"
 cd app
 
 action=${1}
