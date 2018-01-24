@@ -4,7 +4,7 @@ cd app
 
 action=${1}
 
-HOST=ec2-54-89-229-198.compute-1.amazonaws.com
+HOST=ec2-54-221-138-158.compute-1.amazonaws.com
 
 function stop {
     if docker stop -t3 sciensa-app-prod; then
