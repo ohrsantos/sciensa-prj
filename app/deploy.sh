@@ -52,7 +52,7 @@ case $action in
         start
         ;;
     *)
-         echo "Opcao invalida!"
+         echo "Opcao \"$action\"... invalida!"
         ;;
 esac
 exit 0
