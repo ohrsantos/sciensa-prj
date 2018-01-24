@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/ksh
 echo ">>> deploy-dev v:0.32a"
 cd app
 
