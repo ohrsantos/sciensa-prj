@@ -1,10 +1,12 @@
 #!/bin/bash
-echo ">>> deply-prod v:0.2a"
+echo ">>> deploy-prod v:0.2a"
 cd app
 
 action=${1}
 
+export APP_ENV="PROD"
 HOST=ec2-54-91-147-118.compute-1.amazonaws.com
+export PUBLIC_DNS=$HOST
 APP_PORT=3000
 
 function stop {
@@ -23,7 +25,7 @@ function start {
     if docker  build -f Dockerfile.sciensa-app -t ohrsan/node-sciensa-prj:prod .; then
         echo ">>> Imagem contruida com sucesso!"
         echo ">>> Inicializando container sciensa-app-prod $HOST:$APP_PORT"
-        APP_ENV=PROD PUBLIC_DNS=$HOST docker run -d  --rm -e APP_ENV -e PUBLIC_DNS -p $APP_PORT:3000 -p 3001:3001 -v /var/www  --name sciensa-app-prod ohrsan/node-sciensa-prj:prod || exit 4
+        docker run -d  --rm -e APP_ENV -e PUBLIC_DNS -p $APP_PORT:3000 -p 3001:3001 -v /var/www  --name sciensa-app-prod ohrsan/node-sciensa-prj:prod || exit 4
     else
         exit 3
     fi

@@ -26,7 +26,6 @@ function start {
         echo ">>> Imagem contruida com sucesso!"
         echo ">>> Inicializando container sciensa-app-dev $HOST:$APP_PORT"
         docker run -d  --rm -e APP_ENV -e PUBLIC_DNS -p $APP_PORT:3000 -p 3001:3001 -v /var/www  --name sciensa-app-dev ohrsan/node-sciensa-prj:dev || exit 4
-        #APP_ENV=DEV PUBLIC_DNS=$HOST docker run -d  --rm -e APP_ENV -e PUBLIC_DNS -p $APP_PORT:3000 -p 3001:3001 -v /var/www  --name sciensa-app-dev ohrsan/node-sciensa-prj:dev || exit 4
     else
         exit 3
     fi
