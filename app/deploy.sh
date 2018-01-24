@@ -1,10 +1,9 @@
 #!/bin/bash
 cd app
 
-action=${1}
+action=$(echo ${1} | tr '[:lower:]' '[:upper:]')
 
-export APP_ENV=${2}
-#HOST="${4}"
+export APP_ENV=$(echo ${2} | tr '[:lower:]' '[:upper:]')
 export PUBLIC_DNS=${3}
 APP_PORT=${4}
 
@@ -33,19 +32,19 @@ function start {
 }
 
 case $action in
-    "stop" )
+    "STOP" )
         echo "----------------------------------"
         echo "      ENCERRANDO $APP_ENV "
         echo "----------------------------------"
         stop
         ;;
-    "start" )
+    "START" )
         echo "----------------------------------"
         echo "      INICIALIZANDO $APP_ENV "
         echo "----------------------------------"
         start
         ;;
-    "update" )
+    "UPDATE" )
         echo "----------------------------------"
         echo "      DEPLOYING $APP_ENV "
         echo "----------------------------------"
