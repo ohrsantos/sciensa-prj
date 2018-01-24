@@ -23,7 +23,7 @@ function stop {
 function start {
     echo ">>> Construindo a imagem com o codigo atualizado..."
     if docker  build -f Dockerfile.sciensa-app -t ohrsan/node-sciensa-prj:prod .; then
-        echo ">>> Imagem contruida com sucesso!"
+        echo ">>> Imagem construida com sucesso!"
         echo ">>> Inicializando container sciensa-app-prod $HOST:$APP_PORT"
         docker run -d  --rm -e APP_ENV -e PUBLIC_DNS -p $APP_PORT:3000 -p 3001:3001 -v /var/www  --name sciensa-app-prod ohrsan/node-sciensa-prj:prod || exit 4
     else
