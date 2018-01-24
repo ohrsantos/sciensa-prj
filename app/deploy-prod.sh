@@ -1,5 +1,5 @@
 #!/bin/bash
-echo ">>> deploy-prod v:0.31a"
+echo ">>> deploy-prod v:0.32a"
 cd app
 
 action=${1}
@@ -48,7 +48,7 @@ case $action in
         ;;
     restart )
         echo "/*------------------------------*/"
-        echo "   ***   REINICIANDO $APP_ENV ***"
+        echo "   ***   DEPLOYING $APP_ENV ***"
         echo "/*------------------------------*/"
 
         stop
