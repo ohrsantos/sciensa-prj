@@ -2,22 +2,37 @@
 
 action=${1}
 
+HOST=ec2-34-239-104-53.compute-1.amazonaws.com
+
+function stop {
+    if docker stop -t5 sciensa-app-dev; then
+        docker rmi -f ohrsan/node-sciensa-prj:dev || exit 2
+    else
+        exit 1
+    fi
+}
+
+function start {
+    if docker  build -f Dockerfile.sciensa-app -t ohrsan/node-sciensa-prj:dev .; then
+        APP_ENV=DEV PUBLIC_DNS=$HOST docker run -d  --rm -e APP_ENV -e PUBLIC_DNS -p 3000:3000 -p 3001:3001 -v /var/www  --name sciensa-app-dev ohrsan/node-sciensa-prj:dev || exit 4
+    else
+        exit 3
+    fi
+}
+
 case $action in
     stop )
-        docker stop -t5 sciensa-app-dev
-        docker rmi -f ohrsan/node-sciensa-prj:dev
+        stop
         ;;
     start )
-        docker  build -f Dockerfile.sciensa-app -t ohrsan/node-sciensa-prj:dev .
-        APP_ENV=DEV PUBLIC_DNS=ec2-54-89-229-198.compute-1.amazonaws.com docker run -d  --rm -e APP_ENV -e PUBLIC_DNS -p 3000:3000 -p 3001:3001 -v /var/www  --name sciensa-app-dev ohrsan/node-sciensa-prj:dev
+        start
         ;;
     restart )
-        docker stop -t5 sciensa-app-dev
-        docker rmi -f ohrsan/node-sciensa-prj:dev
-        docker  build -f Dockerfile.sciensa-app -t ohrsan/node-sciensa-prj:dev .
-        APP_ENV=DEV PUBLIC_DNS=ec2-34-239-104-53.compute-1.amazonaws.com docker run -d  --rm -e APP_ENV -e PUBLIC_DNS -p 3000:3000 -p 3001:3001 -v /var/www  ohrsan/node-sciensa-prj:dev  --name sciensa-app-dev
+        stop
+        start
         ;;
     *)
          echo "Opcao invalida!"
         ;;
 esac
+exit 0
