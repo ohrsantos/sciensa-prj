@@ -1,10 +1,12 @@
 #!/bin/bash
-echo ">>> deploy-dev v:0.2a"
+echo ">>> deploy-dev v:0.3a"
 cd app
 
 action=${1}
 
-HOST=ec2-34-239-132-79.compute-1.amazonaws.com
+export APP_ENV="DEV"
+HOST="ec2-34-239-132-79.compute-1.amazonaws.com"
+export PUBLIC_DNS=$HOST
 APP_PORT=3000
 
 function stop {
@@ -23,7 +25,8 @@ function start {
     if docker  build -f Dockerfile.sciensa-app -t ohrsan/node-sciensa-prj:dev .; then
         echo ">>> Imagem contruida com sucesso!"
         echo ">>> Inicializando container sciensa-app-dev $HOST:$APP_PORT"
-        APP_ENV=DEV PUBLIC_DNS=$HOST docker run -d  --rm -e APP_ENV -e PUBLIC_DNS -p $APP_PORT:3000 -p 3001:3001 -v /var/www  --name sciensa-app-dev ohrsan/node-sciensa-prj:dev || exit 4
+        docker run -d  --rm -e APP_ENV -e PUBLIC_DNS -p $APP_PORT:3000 -p 3001:3001 -v /var/www  --name sciensa-app-dev ohrsan/node-sciensa-prj:dev || exit 4
+        #APP_ENV=DEV PUBLIC_DNS=$HOST docker run -d  --rm -e APP_ENV -e PUBLIC_DNS -p $APP_PORT:3000 -p 3001:3001 -v /var/www  --name sciensa-app-dev ohrsan/node-sciensa-prj:dev || exit 4
     else
         exit 3
     fi
