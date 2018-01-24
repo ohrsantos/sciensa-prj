@@ -1,4 +1,4 @@
-#!/usr/bin/ksh
+#!/bin/bash
 echo ">>> deploy-dev v:0.32a"
 cd app
 
@@ -32,19 +32,19 @@ function start {
 }
 
 case $action in
-    stop )
+    "stop" )
         echo "/*------------------------------*/"
         echo "   ***   ENCERRANDO $APP_ENV ***"
         echo "/*------------------------------*/"
         stop
         ;;
-    start )
+    "start" )
         echo "/*------------------------------*/"
         echo "   ***   INICIALIZANDO $APP_ENV ***"
         echo "/*------------------------------*/"
         start
         ;;
-    restart )
+    "restart" )
         echo "/*------------------------------*/"
         echo "   ***   DEPLOYING $APP_ENV ***"
         echo "/*------------------------------*/"
