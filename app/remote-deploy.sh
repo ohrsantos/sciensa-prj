@@ -1,6 +1,6 @@
 #!/bin/bash
 
-action=${1}
+action=$(echo ${1} | tr '[:lower:]' '[:upper:]')
 APP_ENV=${2}
 PROD_HOST=${3}
 PORT=${4}
