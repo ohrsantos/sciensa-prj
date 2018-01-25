@@ -1,8 +1,9 @@
 var http = require('http');
 var url = require('url');
 var mysql = require('mysql');
-var express = require('express'),
-    app = express();
+var express = require('express'), app = express();
+
+var app_version='0.2.00a'
 
 app.get('/', function(req, res){
     res.send('Hello World');
@@ -12,15 +13,13 @@ app.use(function(req, res){
     res.sendStatus(404); 
 });
 
-/*
 var server = app.listen(3000, function() {
     var port = server.address().port;
     console.log('Express server listening on port %s', port);
 });
-*/
 
-var app_version='0.042a'
 
+/*
 var db_host="sciensa-db-instance.cbfgofnkvvl3.us-east-1.rds.amazonaws.com";
 var connected=false;
 
@@ -96,3 +95,4 @@ res.writeHead(200, {'Content-Type': 'text/html'});
             res.end('</body></html>');
     }
 }).listen(3000);
+*/
