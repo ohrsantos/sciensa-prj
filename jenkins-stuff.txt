@@ -1,0 +1,33 @@
+Install Jenkins on AWS Amazon Linux:
+sudo yum -y update
+sudo yum install -y git java-1.8.0-openjdk-devel 
+sudo alternatives --config java
+
+sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
+sudo rpm --import http://pkg.jenkins-ci.org/redhat/jenkins-ci.org.key
+sudo yum install jenkins
+
+sudo service jenkins start
+sudo chkconfig --add jenkins
+
+
+https://github.com/ohrsantos/sciensa-prj.git
+
+*/master
+
+x GitHub hook trigger for GITScm polling
+
+x Add timestamps to the Console Output	
+
+Buildis:
+
+CI/CD:
+
+app/deploy.sh UPDATE DEV "ec2-54-161-228-36.compute-1.amazonaws.com" 3000
+
+sleep 5
+app/is-server-up.sh >/dev/null 2>&1
+
+Deploy:
+app/remote-deploy.sh UPDATE PROD "ec2-54-91-147-118.compute-1.amazonaws.com" 3000
+
