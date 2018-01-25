@@ -18,7 +18,7 @@ case $action in
         echo "      INICIALIZANDO $APP_ENV "
         echo "----------------------------------"
         ssh -i ohrs-aws-key-file.pem ec2-user@$PROD_HOST <<< \
-                "docker pull node:latest \
+                "docker pull node:latest; \
                  PUBLIC_DNS=$PROD_HOST APP_ENV=PROD \
                  docker run -d --rm \
                      -e APP_ENV -e PUBLIC_DNS \
@@ -37,7 +37,7 @@ case $action in
         ;;
     "START" )
         echo "----------------------------------"
-        echo "      INICIALIZANDO $APP_ENV "
+        echo "      INICIANDO $APP_ENV "
         echo "----------------------------------"
         ssh -i ohrs-aws-key-file.pem ec2-user@$PROD_HOST <<< \
                 "PUBLIC_DNS=$PROD_HOST APP_ENV=PROD \
