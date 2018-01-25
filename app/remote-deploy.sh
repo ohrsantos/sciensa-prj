@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo ">>>> remote-deploy v:0.4.0a"
+echo ">>>> remote-deploy v:0.4.1a"
 
 action=$(echo ${1} | tr '[:lower:]' '[:upper:]')
 APP_ENV=${2}
@@ -14,7 +14,7 @@ docker push ohrsan/node-sciensa-prj:DEV
 
 ssh -i ohrs-aws-key-file.pem ec2-user@$PROD_HOST <<< \
         "if ! docker images | grep latest >/dev/null; then\
-             echo \"Pulling node:latest...\" \
+             echo \"Pulling node:latest...\"; \
              docker pull node:latest; \
          fi"
 
