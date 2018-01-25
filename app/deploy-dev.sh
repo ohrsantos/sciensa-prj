@@ -1,5 +1,6 @@
 #!/bin/bash
 cd app
+
 ./deploy.sh update DEV "ec2-34-239-132-79.compute-1.amazonaws.com" 3000
 exit 0
 echo ">>>> deploy-dev v:0.32a"
