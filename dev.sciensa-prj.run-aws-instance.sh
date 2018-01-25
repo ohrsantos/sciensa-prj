@@ -7,10 +7,10 @@ SCRIPT_NAME="run-aws-instance.template"
 #instance launch. Note that it contains variables and container run command
 #if container will not be used, dissmis those parametrization accordantly
 ################################################################################
-VERSION="0.03a"
+VERSION="0.05a"
 AUTHOR="Orlando Hehl Rebelo dos Santos"
 DATE_INI="14-01-2018"
-DATE_END="23-01-2018"
+DATE_END="25-01-2018"
 ################################################################################
 #Changes:
 #
@@ -26,22 +26,22 @@ REGION="us-east-1"
 #INSTANCE_DRY_RUN="--dry-run" #Comment this hole line to enable processing 
 INSTANCE_KEY_PAIR="ohrs-aws-key-file"
 INSTANCE_SECURITY_GRP="ohrs-default"
-INSTANCE_NAME="dev-sciensa-prj-4"
+INSTANCE_NAME="dev-sciensa-prj-DEV"
 INSTANCE_USR="ec2-user"
 INSTANCE_AMI_ID="ami-428aa838"
 INSTANCE_TYPE="t2.micro"
 INSTANCE_COUNT="1"
 INSTANCE_DATA_FILE="user-data.txt"
 
-DOCKER_PROFILE="jenkinsci"
-CONTAINER_REPO="blueocean"
-CONTAINER_APP_NAME="jenkins"
-CONTAINER_TAG=""
+#DOCKER_PROFILE="jenkinsci"
+#CONTAINER_REPO="blueocean"
+#CONTAINER_APP_NAME="jenkins"
+#CONTAINER_TAG=""
 #These options bellow due to their many variations,
 #requires that you provide the necessary flags.
-CONTAINER_MNT_VOLUME="-v jenkins-data:/var/jenkins_home -v jenkins-data:/var/jenkins_home -v \$HOME:/home"
-CONTAINER_PORT="-p 8080:8080"
-CONTAINER_OTHERS="-u root"
+#CONTAINER_MNT_VOLUME="-v jenkins-data:/var/jenkins_home -v jenkins-data:/var/jenkins_home -v \$HOME:/home"
+#CONTAINER_PORT="-p 8080:8080"
+#CONTAINER_OTHERS="-u root"
 ################################################################################
 
 
