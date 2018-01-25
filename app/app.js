@@ -22,12 +22,7 @@ var con = mysql.createConnection({
 });
 
 app.get('/', function(req, res){
-res.send("<html><body><h1>Listando os produtos</h1></body></html>");
-    //res.send('<html>');
-    //res.send('<head><title></title><meta charset="utf-8"></head>');
-    //res.send('<body style="color: rgb(15, 15, 15); background-color:rgb(250, 250, 250)">');
-    //res.send('<h1 style="font-family:Sans-serif;background-color:#C01080; color:white;">Sciensa - Projeto (' + process.env.APP_ENV + ') ver: ' + app_version + '</h1><br>');
-    //res.send('</body></html>');
+res.send("<html><body><h1>Homens trabalhando...</h1></body></html>");
 });
 
 app.use(function(req, res){
