@@ -3,10 +3,30 @@ var url = require('url');
 var mysql = require('mysql');
 var express = require('express'), app = express();
 
-var app_version='0.2.00a'
+var app_version='0.02.001a'
+
+var db_host="sciensa-db-instance.cbfgofnkvvl3.us-east-1.rds.amazonaws.com";
+var connected=false;
+
+if (process.env.APP_ENV == "DEV") 
+   var database="sciensa_dev";
+
+if (process.env.APP_ENV == "PROD") 
+   var database="sciensa_prod";
+
+var con = mysql.createConnection({
+  host: db_host,
+  user: "root",
+  password: "sciensa1",
+  database: database
+});
 
 app.get('/', function(req, res){
-    res.send('Hello World');
+    res.send('<html>');
+    res.send('<head><title></title><meta charset="utf-8"></head>');
+    res.send('<body style="color: rgb(15, 15, 15); background-color:rgb(250, 250, 250)">');
+    res.send('<h1 style="font-family:Sans-serif;background-color:#C01080; color:white;">Sciensa - Projeto (' + process.env.APP_ENV + ') ver: ' + app_version + '</h1><br>');
+    res.send('</body></html>');
 });
 
 app.use(function(req, res){
