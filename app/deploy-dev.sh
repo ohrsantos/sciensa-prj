@@ -1,4 +1,12 @@
 #!/bin/bash
+
+echo "######################################################################"
+echo "                      *** DESCONTINUADO ***
+echo "                      ***   DEPRICATED  ***
+echo "######################################################################"
+
+exit 255
+
 cd app
 
 ./deploy.sh update DEV "ec2-34-239-132-79.compute-1.amazonaws.com" 3000
