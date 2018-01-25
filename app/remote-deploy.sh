@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [[ REMOTE_DEPLOY == "FALSE" ]]; then exit 0;fi
+echo $REMOTE_DEPLOY
+exit 0
+
 action=${1}
 APP_ENV=${2}
 PROD_HOST=${3}
