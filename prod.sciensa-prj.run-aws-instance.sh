@@ -23,10 +23,10 @@ DATE_END="25-01-2018"
 PROFILE_USR="a1"
 REGION="us-east-1"
 
-#INSTANCE_DRY_RUN="--dry-run" #Comment this hole line to enable processing 
+INSTANCE_DRY_RUN="--dry-run" #Comment this hole line to enable processing 
 INSTANCE_KEY_PAIR="ohrs-aws-key-file"
 INSTANCE_SECURITY_GRP="ohrs-default"
-INSTANCE_NAME="dev-sciensa-prj-PROD"
+INSTANCE_NAME="sciensa-prj-PROD"
 INSTANCE_USR="ec2-user"
 INSTANCE_AMI_ID="ami-428aa838"
 INSTANCE_TYPE="t2.micro"
