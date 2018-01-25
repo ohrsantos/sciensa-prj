@@ -2,7 +2,7 @@
 #        1         2         3         4         5         6         7         8         9
 #234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
 ################################################################################
-SCRIPT_NAME="run-aws-instance.template"
+SCRIPT_NAME="dev.sciensa-prj.run-aws-instance"
 #This script is a template to be modified and "save as" for the specific
 #instance launch. Note that it contains variables and container run command
 #if container will not be used, dissmis those parametrization accordantly
