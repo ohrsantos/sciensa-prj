@@ -1,7 +1,7 @@
 module.exports = function(app) {
-    var APP_VERSION = '0.02.007a';
-    switch(process.APP_ENV) {
-    case "dev":
+    var APP_VERSION = '0.02.008a';
+    //switch(process.APP_ENV) {
+    //case "dev":
             app.get('/dev', function(req, res) {
                     res.render('proverbios/index.ejs', {app_env: process.env.APP_ENV,
                                                         app_version: APP_VERSION,
@@ -10,10 +10,10 @@ module.exports = function(app) {
                                                         process_platform: process.platform
                                                        });
             });
-            break;
-
+            //break;
+/*
     case "prod":
-            app.get('/dev', function(req, res) {
+            app.get('/prod', function(req, res) {
                     res.render('proverbios/index.ejs', {app_env: process.env.APP_ENV,
                                                         app_version: APP_VERSION,
                                                         process_pid: process.pid,
@@ -23,7 +23,7 @@ module.exports = function(app) {
             });
             break;
     }
-
+*/
     app.get('/proverbios', function(req, res) {
         var connection = app.infra.connectionFactory();
         var ProverbiosDAO = new app.infra.ProverbiosDAO(connection);
