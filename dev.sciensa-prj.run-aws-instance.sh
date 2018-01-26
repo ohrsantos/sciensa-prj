@@ -7,10 +7,10 @@ SCRIPT_NAME="dev.sciensa-prj.run-aws-instance"
 #instance launch. Note that it contains variables and container run command
 #if container will not be used, dissmis those parametrization accordantly
 ################################################################################
-VERSION="0.05a"
+VERSION="0.06a"
 AUTHOR="Orlando Hehl Rebelo dos Santos"
 DATE_INI="14-01-2018"
-DATE_END="25-01-2018"
+DATE_END="26-01-2018"
 ################################################################################
 #Changes:
 #
@@ -23,7 +23,7 @@ DATE_END="25-01-2018"
 PROFILE_USR="a1"
 REGION="us-east-1"
 
-#INSTANCE_DRY_RUN="--dry-run" #Comment this hole line to enable processing 
+if [[ $1 != "CREATE" ]]; then INSTANCE_DRY_RUN="--dry-run"; fi
 INSTANCE_KEY_PAIR="ohrs-aws-key-file"
 INSTANCE_SECURITY_GRP="ohrs-default"
 INSTANCE_NAME="dev-sciensa-prj-DEV"
