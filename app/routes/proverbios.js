@@ -1,4 +1,6 @@
 module.exports = function(app) {
+    var app_version='0.02.002a';
+
     app.get('/', function(req, res) {
         //var connection = app.infra.connectionFactory();
         //var ProverbiosDAO = new app.infra.ProverbiosDAO(connection);
