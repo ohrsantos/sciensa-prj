@@ -5,7 +5,7 @@ module.exports = function(app) {
         //var ProverbiosDAO = new app.infra.ProverbiosDAO(connection);
 
         //ProverbiosDAO.lista(function(err, results) {
-            res.render('proverbios/index.ejs', {app_env: process.env.APP_ENV, app_ver: '0.02.002a'});
+            res.render('proverbios/index.ejs', {app_env: process.env.APP_ENV, app_version: '0.02.002a'});
         //});
 
         //connection.end();
