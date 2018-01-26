@@ -25,10 +25,10 @@
     <h4> RDS: " + db_host + "/" + database + " ... conectado com sucesso! </h4>
     <p>Horário UTC deste servidor:  <%= Date() %></p> <br>
     <ul>
-    <li>pid: <% process.pid %> </li>
+    <li>pid: process_pid %> </li>
     <li>uptime: <%= process.uptime() %></li>
-    <li>Arquitetura:  + process.arch + </li>
-    <li>Plataforma:  + process.platform + </li>
+    <li>Arquitetura:  process_arch </li>
+    <li>Plataforma:  process_platform </li>
     </ul> <br>
     <br><button type="button" onclick="alert('Hello World!')">Ol&aacute;!</button>
     <br><button type="button" onclick="window.location.href=\'http:// + public_dns + :3000/?action=select\'">Select</button>
