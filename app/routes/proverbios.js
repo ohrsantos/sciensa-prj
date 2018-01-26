@@ -1,5 +1,5 @@
 module.exports = function(app) {
-    var APP_VERSION = '0.02.005a';
+    var APP_VERSION = '0.02.007a';
     app.get('/', function(req, res) {
             res.render('proverbios/index.ejs', {app_env: process.env.APP_ENV,
                                                 app_version: APP_VERSION,
