@@ -30,11 +30,9 @@
     <li>Arquitetura:  <%= process_arch %> </li>
     <li>Plataforma:  <%= process_platform %> </li>
     </ul> <br>
-    <script>
-for (param in location) {document.writeln (param, ':\n\t', location[param])}
-}
-
-    </script>
+    <%=
+    for (param in location) {document.writeln (param, ':\n\t', location[param])}
+    %>
     <br><button type="button" onclick="alert('Hello World!')">Ol&aacute;!</button>
     <!-- <br><button type="button" onclick="window.location.href=\'http:// + public_dns + :3000/?action=select\'">Select</button> -->
 
