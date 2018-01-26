@@ -1,0 +1,20 @@
+<html>
+    <body>
+        <table border="1px">
+            <tr>
+                <td>Lingua</td>
+                <td>Provervio</td>
+                <td>Autor</td>
+            </tr>
+            <tr>
+                <% for(var i=0; i<lista.length; i++) {%>
+                    <tr>
+                        <td><%= lista[i].lang %></td>
+                        <td><%= lista[i].content %></td>
+                        <td><%= lista[i].author %></td>
+                    </tr>
+                <% } %>
+            </tr>
+        </table>
+    </body>
+</html>
