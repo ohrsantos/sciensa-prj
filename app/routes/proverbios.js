@@ -1,15 +1,15 @@
 module.exports = function(app) {
     var APP_VERSION = '0.02.010a';
-            app.get('/', function(req, res) {
-                    res.render('proverbios/index.ejs', {app_env: process.env.APP_ENV,
-                                                        app_version: APP_VERSION,
-                                                        process_pid: process.pid,
-                                                        process_arch: process.arch,
-                                                        process_platform: process.platform
-                                                       });
-            });
+    app.get('/', function(req, res) {
+            res.render('proverbios/index.ejs', {app_env: process.env.APP_ENV,
+                                                app_version: APP_VERSION,
+                                                process_pid: process.pid,
+                                                process_arch: process.arch,
+                                                process_platform: process.platform
+                                               });
+    });
+
     switch(process.env.APP_ENV) {
-    case "DEV":
     case "dev":
             app.get('/dev', function(req, res) {
                     res.render('proverbios/index.ejs', {app_env: process.env.APP_ENV,
@@ -21,7 +21,6 @@ module.exports = function(app) {
             });
             break;
 
-    case "PROD":
     case "prod":
             app.get('/prod', function(req, res) {
                     res.render('proverbios/index.ejs', {app_env: process.env.APP_ENV,
