@@ -25,7 +25,7 @@
     <!-- <h4> RDS: " + db_host + "/" + database + " ... conectado com sucesso! </h4> -->
     <p>Horário UTC deste servidor:  <%= Date() %></p> <br>
     <ul>
-    <li>pid: process_pid %> </li>
+    <li>pid: <%= process_pid %> %> </li>
     <li>uptime: <%= process.uptime() %></li>
     <li>Arquitetura:  <%= process_arch %> </li>
     <li>Plataforma:  <%= process_platform %> </li>
