@@ -1,5 +1,5 @@
 #!/bin/bash
-cd app
+#cd app
 
 action=$(echo ${1} | tr '[:lower:]' '[:upper:]')
 
