@@ -1,3 +1,10 @@
+var app = require('./config/express')();
+
+app.listen(3000, function() {
+    console.log("servidor rodando");
+})
+
+/*
 var http = require('http');
 var url = require('url');
 var mysql = require('mysql');
@@ -35,7 +42,6 @@ var server = app.listen(3000, function() {
 });
 
 
-/*
 var db_host="sciensa-db-instance.cbfgofnkvvl3.us-east-1.rds.amazonaws.com";
 var connected=false;
 
