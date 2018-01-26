@@ -30,6 +30,13 @@
     <li>Arquitetura:  <%= process_arch %> </li>
     <li>Plataforma:  <%= process_platform %> </li>
     </ul> <br>
+    <p id="demo"></p>
+    <script>
+        function myFunction() {
+            var h_name = location.hostname;
+            document.getElementById("demo").innerHTML= h_name;
+        }
+    </script>
     <br><button type="button" onclick="alert('Hello World!')">Ol&aacute;!</button>
     <!-- <br><button type="button" onclick="window.location.href=\'http:// + public_dns + :3000/?action=select\'">Select</button> -->
 
