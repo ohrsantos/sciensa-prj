@@ -31,9 +31,7 @@
     <li>Plataforma:  <%= process_platform %> </li>
     </ul> <br>
     <script>
-w=window.open("");
-for(i in navigator){
-w.document.write("<li>"+i+" = "+eval('navigator.'+i));
+for (param in location) {document.writeln (param, ':\n\t', location[param])}
 }
 
     </script>
