@@ -1,5 +1,5 @@
 module.exports = function(app) {
-    var APP_VERSION = '0.02.010a';
+    var APP_VERSION = '0.02.011a';
     app.get('/', function(req, res) {
             res.render('proverbios/index.ejs', {app_env: process.env.APP_ENV,
                                                 app_version: APP_VERSION,
@@ -9,8 +9,8 @@ module.exports = function(app) {
                                                });
     });
 
-    switch(process.env.APP_ENV) {
-    case "dev":
+    //switch(process.env.APP_ENV) {
+    //case "dev":
             app.get('/dev', function(req, res) {
                     res.render('proverbios/index.ejs', {app_env: process.env.APP_ENV,
                                                         app_version: APP_VERSION,
@@ -19,9 +19,9 @@ module.exports = function(app) {
                                                         process_platform: process.platform
                                                        });
             });
-            break;
+            //break;
 
-    case "prod":
+    //case "prod":
             app.get('/prod', function(req, res) {
                     res.render('proverbios/index.ejs', {app_env: process.env.APP_ENV,
                                                         app_version: APP_VERSION,
@@ -30,8 +30,8 @@ module.exports = function(app) {
                                                         process_platform: process.platform
                                                        });
             });
-            break;
-    }
+            //break;
+    //}
 
     app.get('/proverbios', function(req, res) {
         var connection = app.infra.connectionFactory();
