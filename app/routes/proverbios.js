@@ -11,7 +11,7 @@ function log_date_ip (path) {
             ip = req.connection.remoteAddress;
         } else {
             ip = req.ip;
-        }console.log(Date() + '| client IP: ' + ip + ' ' + path ));
+        }console.log(Date() + '| client IP: ' + ip + ' ' + path );
         //}console.log(Date() + '| client IP: ' + ip + ' app.get(\'/dev\', ...)');
 }
 
