@@ -3,7 +3,7 @@ module.exports = function(app) {
 
     var APP_VERSION = '0.02.012a';
     app.get('/', function(req, res) {
-    console.log(Date() + 'app.get(\'/\', ...)');
+    console.log(Date() + ' from: ' + request.connection.remoteAddress + ' app.get(\'/\', ...)');
             res.render('proverbios/index.ejs', {app_env: process.env.APP_ENV,
                                                 app_version: APP_VERSION,
                                                 process_pid: process.pid,
@@ -13,7 +13,7 @@ module.exports = function(app) {
     });
 
     app.get('/dev', function(req, res) {
-    console.log(Date() + 'app.get(\'/dev\', ...)');
+    console.log(Date() + ' from: ' + request.connection.remoteAddress + ' app.get(\'/dev\', ...)');
             res.render('proverbios/index.ejs', {app_env: process.env.APP_ENV,
                                                 app_version: APP_VERSION,
                                                 process_pid: process.pid,
@@ -23,7 +23,7 @@ module.exports = function(app) {
     });
 
     app.get('/prod', function(req, res) {
-    console.log(Date() + 'app.get(\'/prod\', ...)');
+    console.log(Date() + ' from: ' + request.connection.remoteAddress + ' app.get(\'/prod\', ...)');
             res.render('proverbios/index.ejs', {app_env: process.env.APP_ENV,
                                                 app_version: APP_VERSION,
                                                 process_pid: process.pid,
