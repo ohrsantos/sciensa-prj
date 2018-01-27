@@ -9,7 +9,6 @@ RUN npm install express
 RUN npm install express-load
 RUN npm install ejs
 RUN npm install mysql
-RUN npm install ipware
 RUN npm install -g nodemon
 ENTRYPOINT nodemon app
 EXPOSE 3000
