@@ -22,6 +22,13 @@ module.exports = function(app) {
                                             process_platform: process.platform
                                            }
         );
+var getIP = require('ipware')().get_ip;
+app.use(function(req, res, next) {
+    var ipInfo = getIP(req);
+    console.log(ipInfo);
+    // { clientIp: '127.0.0.1', clientIpRoutable: false }
+    next();
+});
     });
 
     app.get('/prod', function(req, res) {
