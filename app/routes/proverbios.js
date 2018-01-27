@@ -3,8 +3,7 @@ module.exports = function(app) {
 
     var APP_VERSION = '0.02.012a';
 
-/*
-function log_date_ip (path) {
+function log_date_ip(path) {
         var ip;
         if (req.headers['x-forwarded-for']) {
             ip = req.headers['x-forwarded-for'].split(",")[0];
@@ -15,7 +14,6 @@ function log_date_ip (path) {
         }console.log(Date() + '| client IP: ' + ip + ' ' + path );
         //}console.log(Date() + '| client IP: ' + ip + ' app.get(\'/dev\', ...)');
 }
-*/
     app.get('/', function(req, res) {
         console.log(Date() + ' app.get(\'/\', ...)');
         res.render('proverbios/index.ejs', {app_env: process.env.APP_ENV,
