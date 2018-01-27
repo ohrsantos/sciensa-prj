@@ -22,13 +22,14 @@ module.exports = function(app) {
                                             process_platform: process.platform
                                            }
         );
-var getIP = require('ipware')().get_ip;
-app.use(function(req, res, next) {
-    var ipInfo = getIP(req);
-    console.log(ipInfo);
-    // { clientIp: '127.0.0.1', clientIpRoutable: false }
-    next();
-});
+var ip;
+if (req.headers['x-forwarded-for']) {
+    ip = req.headers['x-forwarded-for'].split(",")[0];
+} else if (req.connection && req.connection.remoteAddress) {
+    ip = req.connection.remoteAddress;
+} else {
+    ip = req.ip;
+}console.log("client IP is *********************" + ip);
     });
 
     app.get('/prod', function(req, res) {
