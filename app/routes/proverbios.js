@@ -3,7 +3,7 @@ module.exports = function(app) {
 
     var APP_VERSION = '0.02.015a';
 
-function log_date_ip(path) {
+function log_date_ip(req, path) {
         var ip;
         if (req.headers['x-forwarded-for']) {
             ip = req.headers['x-forwarded-for'].split(",")[0];
