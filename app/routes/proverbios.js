@@ -14,7 +14,6 @@ module.exports = function(app) {
     });
 
     app.get('/dev', function(req, res) {
-        console.log(Date() + ' app.get(\'/dev\', ...)');
         res.render('proverbios/index.ejs', {app_env: process.env.APP_ENV,
                                             app_version: APP_VERSION,
                                             process_pid: process.pid,
@@ -22,14 +21,15 @@ module.exports = function(app) {
                                             process_platform: process.platform
                                            }
         );
-var ip;
-if (req.headers['x-forwarded-for']) {
-    ip = req.headers['x-forwarded-for'].split(",")[0];
-} else if (req.connection && req.connection.remoteAddress) {
-    ip = req.connection.remoteAddress;
-} else {
-    ip = req.ip;
-}console.log("client IP is *********************" + ip);
+
+        var ip;
+        if (req.headers['x-forwarded-for']) {
+            ip = req.headers['x-forwarded-for'].split(",")[0];
+        } else if (req.connection && req.connection.remoteAddress) {
+            ip = req.connection.remoteAddress;
+        } else {
+            ip = req.ip;
+        }console.log(Date() + '| client IP: ' + ip + ' app.get(\'/dev\', ...)');
     });
 
     app.get('/prod', function(req, res) {
