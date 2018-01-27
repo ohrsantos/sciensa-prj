@@ -33,7 +33,7 @@ function log_date_ip(req, path) {
                                             process_platform: process.platform
                                            }
         );
-        log_date_ip('/dev');
+        log_date_ip(req, '/dev');
     });
 
     app.get('/prod', function(req, res) {
