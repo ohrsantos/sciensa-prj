@@ -12,8 +12,20 @@ function log_date_ip(req, path) {
         } else {
             ip = req.ip;
         }console.log(Date() + '| client IP: ' + ip + ' ' + path );
-        //}console.log(Date() + '| client IP: ' + ip + ' app.get(\'/dev\', ...)');
 }
+        //}console.log(Date() + '| client IP: ' + ip + ' app.get(\'/dev\', ...)');
+
+/*
+function getCallerIP(request) {
+    var ip = request.headers['x-forwarded-for'] ||
+        request.connection.remoteAddress ||
+        request.socket.remoteAddress ||
+        request.connection.socket.remoteAddress;
+    ip = ip.split(',')[0];
+    ip = ip.split(':').slice(-1); //in case the ip returned in a format: "::ffff:146.xxx.xxx.xxx"
+    return ip;
+}
+*/
     app.get('/', function(req, res) {
         console.log(Date() + ' app.get(\'/\', ...)');
         res.render('proverbios/index.ejs', {app_env: process.env.APP_ENV,
