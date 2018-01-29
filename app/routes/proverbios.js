@@ -69,4 +69,26 @@ function getCallerIP(request) {
 
         connection.end();
     });
+
+    app.get('/dev/proverbios', function(req, res) {
+        var connection = app.infra.connectionFactory();
+        var ProverbiosDAO = new app.infra.ProverbiosDAO(connection);
+
+        ProverbiosDAO.lista(function(err, results) {
+            res.render('proverbios/lista', {lista: results});
+        });
+
+        connection.end();
+    });
+
+    app.get('/prod/proverbios', function(req, res) {
+        var connection = app.infra.connectionFactory();
+        var ProverbiosDAO = new app.infra.ProverbiosDAO(connection);
+
+        ProverbiosDAO.lista(function(err, results) {
+            res.render('proverbios/lista', {lista: results});
+        });
+
+        connection.end();
+    });
 }
