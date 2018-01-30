@@ -1,7 +1,7 @@
 module.exports = function(app) {
     console.log('module.exports = function(app)');
 
-    var APP_VERSION = '0.02.026a';
+    var APP_VERSION = '0.02.030a';
 
 function log_date_ip(req, path) {
         var ip;
@@ -36,7 +36,7 @@ function getCallerIP(request) {
                                            }
         );
     });
-
+/*
     app.get('/dev', function(req, res) {
         res.render('proverbios/index.ejs', {app_env: process.env.APP_ENV,
                                             app_version: APP_VERSION,
@@ -58,7 +58,7 @@ function getCallerIP(request) {
                                            }
         );
     });
-
+*/
     app.get('/proverbios', function(req, res) {
         var connection = app.infra.connectionFactory();
         var ProverbiosDAO = new app.infra.ProverbiosDAO(connection);
@@ -70,6 +70,7 @@ function getCallerIP(request) {
         connection.end();
     });
 
+/*
     app.get('/dev/proverbios', function(req, res) {
         var connection = app.infra.connectionFactory();
         var ProverbiosDAO = new app.infra.ProverbiosDAO(connection);
@@ -88,7 +89,7 @@ function getCallerIP(request) {
         ProverbiosDAO.lista(function(err, results) {
             res.render('proverbios/lista', {lista: results});
         });
-
+*/
         connection.end();
     });
 }
