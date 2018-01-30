@@ -97,9 +97,9 @@ user_data=(
 
 #Creating  /etc/rc.d/rc.local:
 "echo sleep 60 >> /etc/rc.d/rc.local"
-"echo docker login -u=ohrsan -p=bomdia01 >> /home/ec2-user/rc.local.log 2>&1 >> /etc/rc.d/rc.local"
-"echo docker pull node:latest >> /home/ec2-user/rc.local.log 2>&1 >> /etc/rc.d/rc.local"
-"echo PUBLIC_DNS=DEPRICATED APP_ENV=PROD docker run -d --rm -e APP_ENV -e PUBLIC_DNS -p 3000:3000 -p 3001:3001 -v /var/www  --name sciensa-app-PROD ohrsan/node-sciensa-prj:DEV >> /home/ec2-user/rc.local.log 2>&1 >> /etc/rc.d/rc.local"
+"echo 'docker login -u=ohrsan -p=bomdia01 >> /home/ec2-user/rc.local.log 2>&1' >> /etc/rc.d/rc.local"
+"echo 'docker pull node:latest >> /home/ec2-user/rc.local.log 2>&1' >> /etc/rc.d/rc.local"
+"echo 'PUBLIC_DNS=DEPRICATED APP_ENV=PROD docker run -d --rm -e APP_ENV -e PUBLIC_DNS -p 3000:3000 -p 3001:3001 -v /var/www  --name sciensa-app-PROD ohrsan/node-sciensa-prj:DEV >> /home/ec2-user/rc.local.log 2>&1' >> /etc/rc.d/rc.local"
 
 #"echo \"for (( i = 0 ; i < 10; i++ )); do\" >> /etc/rc.d/rc.local"
 #"echo \"    pgrep dockerd && /usr/bin/docker start ${CONTAINER_APP_NAME}-app-${CONTAINER_TAG} > /home/$INSTANCE_USR/${CONTAINER_APP_NAME}-app-${CONTAINER_TAG}.docker.log 2>&1; chmod 777 /home/$INSTANCE_USR/${CONTAINER_APP_NAME}-app-${CONTAINER_TAG}.docker.log; exit 0\" >> /etc/rc.d/rc.local"
