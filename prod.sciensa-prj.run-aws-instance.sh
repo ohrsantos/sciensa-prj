@@ -80,8 +80,11 @@ user_data=(
 "chkconfig docker on"
 
 "chmod +x /etc/rc.d/rc.local"
-"/etc/rc.d/rc.local"
 
+"sleep 60"
+"docker login -u=ohrsan -p=bomdia01 >> /home/ec2-user/rc.local.log 2>&1 "
+"docker pull node:latest >> /home/ec2-user/rc.local.log 2>&1"
+"PUBLIC_DNS=DEPRICATED APP_ENV=PROD docker run -d --rm -e APP_ENV -e PUBLIC_DNS -p 3000:3000 -p 3001:3001 -v /var/www  --name sciensa-app-PROD ohrsan/node-sciensa-prj:DEV >> /home/ec2-user/rc.local.log 2>&1"
 #This production instance doesnt need Java and Jenkins at this time, so lets comment them!
 #Java installation
 #"yum install -y git java-1.8.0-openjdk-devel"
@@ -128,5 +131,5 @@ done
     $AWS ec2 describe-instances --filters "Name=instance-id, Values=$new_image_id"
 
 echo "${INSTANCE_NAME}" > .instance-name.ohrs
-echo "Wait a little bit to strike \"ENTER\" key in order to send the \".isntance-name\" file..."
+echo "Wait a little bit to strike \"ENTER\" key in order to send the \".instance-name\" file..."
 aws-sh-tk -u a1 -r us-east-1  -l -a scp -K ohrs-aws-key-file $(pwd)/.instance-name.ohrs  \~
