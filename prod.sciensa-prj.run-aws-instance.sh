@@ -95,7 +95,7 @@ user_data=(
 
 
 #Creating  /etc/rc.d/rc.local:
-"echo sleep 7 >> /etc/rc.d/rc.local"
+"echo sleep 15 >> /etc/rc.d/rc.local"
 "echo docker login -u=ohrsan -p=bomdia01 >> /etc/rc.d/rc.local"
 "echo docker pull node:latest >> /etc/rc.d/rc.local"
 "echo PUBLIC_DNS=DEPRICATED APP_ENV=PROD docker run -d --rm -e APP_ENV -e PUBLIC_DNS -p 3000:3000 -p 3001:3001 -v /var/www  --name sciensa-app-PROD ohrsan/node-sciensa-prj:DEV >> /etc/rc.d/rc.local"
@@ -129,4 +129,4 @@ done
 echo "${INSTANCE_NAME}" > .instance-name.ohrs
 echo "Wait a little bit to strike \"ENTER\" key in order to send the \".isntance-name\" file..."
 read
-aws-sh-tk -u a1 -r us-east-1  -l -a scp -K ohrs-aws-key-file $(pwd)/.instance-name.ohrs  \~
+#aws-sh-tk -u a1 -r us-east-1  -l -a scp -K ohrs-aws-key-file $(pwd)/.instance-name.ohrs  \~
