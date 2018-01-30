@@ -1,7 +1,7 @@
 module.exports = function(app) {
     console.log('module.exports = function(app)');
 
-    var APP_VERSION = '0.02.030a';
+    var APP_VERSION = '0.02.032a';
 
 function log_date_ip(req, path) {
         var ip;
@@ -13,19 +13,7 @@ function log_date_ip(req, path) {
             ip = req.ip;
         }console.log(Date() + '| client IP: ' + ip + ' ' + path );
 }
-        //}console.log(Date() + '| client IP: ' + ip + ' app.get(\'/dev\', ...)');
 
-/*
-function getCallerIP(request) {
-    var ip = request.headers['x-forwarded-for'] ||
-        request.connection.remoteAddress ||
-        request.socket.remoteAddress ||
-        request.connection.socket.remoteAddress;
-    ip = ip.split(',')[0];
-    ip = ip.split(':').slice(-1); //in case the ip returned in a format: "::ffff:146.xxx.xxx.xxx"
-    return ip;
-}
-*/
     app.get('/', function(req, res) {
         console.log(Date() + ' app.get(\'/\', ...)');
         res.render('proverbios/index.ejs', {app_env: process.env.APP_ENV,
@@ -36,6 +24,32 @@ function getCallerIP(request) {
                                            }
         );
     });
+
+    app.get('/proverbios', function(req, res) {
+        var connection = app.infra.connectionFactory();
+        var ProverbiosDAO = new app.infra.ProverbiosDAO(connection);
+
+        ProverbiosDAO.lista(function(err, results) {
+            res.render('proverbios/lista', {lista: results});
+        });
+
+        connection.end();
+    });
+
+/*
+Os fragmentos de codigo estao sendo deixados comentados aqui "por hora", para talvez serem reaproveitado
+no futuro
+function getCallerIP(request) {
+    var ip = request.headers['x-forwarded-for'] ||
+        request.connection.remoteAddress ||
+        request.socket.remoteAddress ||
+        request.connection.socket.remoteAddress;
+    ip = ip.split(',')[0];
+    ip = ip.split(':').slice(-1); //in case the ip returned in a format: "::ffff:146.xxx.xxx.xxx"
+    return ip;
+}
+*/
+
 /*
     app.get('/dev', function(req, res) {
         res.render('proverbios/index.ejs', {app_env: process.env.APP_ENV,
@@ -58,19 +72,7 @@ function getCallerIP(request) {
                                            }
         );
     });
-*/
-    app.get('/proverbios', function(req, res) {
-        var connection = app.infra.connectionFactory();
-        var ProverbiosDAO = new app.infra.ProverbiosDAO(connection);
 
-        ProverbiosDAO.lista(function(err, results) {
-            res.render('proverbios/lista', {lista: results});
-        });
-
-        connection.end();
-    });
-
-/*
     app.get('/dev/proverbios', function(req, res) {
         var connection = app.infra.connectionFactory();
         var ProverbiosDAO = new app.infra.ProverbiosDAO(connection);
