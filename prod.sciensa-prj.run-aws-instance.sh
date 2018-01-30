@@ -7,7 +7,7 @@ SCRIPT_NAME="prod.sciensa-prj.run-aws-instance"
 #instance launch. Note that it contains variables and container run command
 #if container will not be used, dissmis those parametrization accordantly
 ################################################################################
-VERSION="0.07a"
+VERSION="0.07.002a"
 AUTHOR="Orlando Hehl Rebelo dos Santos"
 DATE_INI="14-01-2018"
 DATE_END="30-01-2018"
@@ -80,6 +80,7 @@ user_data=(
 "chkconfig docker on"
 
 "chmod +x /etc/rc.d/rc.local"
+"/etc/rc.d/rc.local"
 
 #This production instance doesnt need Java and Jenkins at this time, so lets comment them!
 #Java installation
@@ -128,5 +129,4 @@ done
 
 echo "${INSTANCE_NAME}" > .instance-name.ohrs
 echo "Wait a little bit to strike \"ENTER\" key in order to send the \".isntance-name\" file..."
-read
-#aws-sh-tk -u a1 -r us-east-1  -l -a scp -K ohrs-aws-key-file $(pwd)/.instance-name.ohrs  \~
+aws-sh-tk -u a1 -r us-east-1  -l -a scp -K ohrs-aws-key-file $(pwd)/.instance-name.ohrs  \~
