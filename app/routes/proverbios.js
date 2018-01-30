@@ -89,7 +89,7 @@ function getCallerIP(request) {
         ProverbiosDAO.lista(function(err, results) {
             res.render('proverbios/lista', {lista: results});
         });
-*/
         connection.end();
     });
+*/
 }
