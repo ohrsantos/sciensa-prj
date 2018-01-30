@@ -7,10 +7,10 @@ SCRIPT_NAME="prod.sciensa-prj.run-aws-instance"
 #instance launch. Note that it contains variables and container run command
 #if container will not be used, dissmis those parametrization accordantly
 ################################################################################
-VERSION="0.06a"
+VERSION="0.07a"
 AUTHOR="Orlando Hehl Rebelo dos Santos"
 DATE_INI="14-01-2018"
-DATE_END="26-01-2018"
+DATE_END="30-01-2018"
 ################################################################################
 #Changes:
 #
@@ -95,7 +95,11 @@ user_data=(
 
 
 #Creating  /etc/rc.d/rc.local:
-#"echo sleep 5 >> /etc/rc.d/rc.local"
+"echo sleep 7 >> /etc/rc.d/rc.local"
+"echo docker login -u=ohrsan -p=bomdia01 >> /etc/rc.d/rc.local"
+"echo docker pull node:latest >> /etc/rc.d/rc.local"
+"echo PUBLIC_DNS=DEPRICATED APP_ENV=PROD docker run -d --rm -e APP_ENV -e PUBLIC_DNS -p 3000:3000 -p 3001:3001 -v /var/www  --name sciensa-app-PROD ohrsan/node-sciensa-prj:DEV >> /etc/rc.d/rc.local"
+
 #"echo \"for (( i = 0 ; i < 10; i++ )); do\" >> /etc/rc.d/rc.local"
 #"echo \"    pgrep dockerd && /usr/bin/docker start ${CONTAINER_APP_NAME}-app-${CONTAINER_TAG} > /home/$INSTANCE_USR/${CONTAINER_APP_NAME}-app-${CONTAINER_TAG}.docker.log 2>&1; chmod 777 /home/$INSTANCE_USR/${CONTAINER_APP_NAME}-app-${CONTAINER_TAG}.docker.log; exit 0\" >> /etc/rc.d/rc.local"
 #"echo \"    echo sleeping 3 seconds...\" >> /etc/rc.d/rc.local"
