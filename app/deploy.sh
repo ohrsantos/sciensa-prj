@@ -16,6 +16,7 @@ function stop {
     fi
     echo ">>>> Removendo imagem ..."
     docker rmi -f ohrsan/node-sciensa-prj:${APP_ENV} || exit 1
+    echo ">>>> Imagem removida com sucesso ..."
 }
 
 function start {
