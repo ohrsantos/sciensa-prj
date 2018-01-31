@@ -1,4 +1,5 @@
 var os = require("os");
+var hostname = os.hostname();
 
 module.exports = function(app) {
     console.log('module.exports = function(app)');
@@ -23,6 +24,7 @@ function log_date_ip(req, path) {
                                             process_pid: process.pid,
                                             process_arch: process.arch,
                                             process_platform: process.platform
+                                            process_hostname: hostname
                                            }
         );
     });
