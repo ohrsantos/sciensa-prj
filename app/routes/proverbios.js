@@ -20,14 +20,14 @@ function log_date_ip(req, path) {
 }
 
     app.get('/', function(req, res) {
-        var url_o = url.parse(req, true);
+        var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
         console.log(Date() + ' app.get(\'/\', ...)');
         res.render('proverbios/index.ejs', {app_env: process.env.APP_ENV,
                                             app_version: APP_VERSION,
                                             process_pid: process.pid,
                                             process_arch: process.arch,
                                             process_platform: process.platform,
-                                            process_hostname: url_o.host + url_o.pathname
+                                            process_hostname: fullUrl
                                            }
         );
     });
