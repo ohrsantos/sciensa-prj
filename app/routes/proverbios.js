@@ -20,7 +20,7 @@ function log_date_ip(req, path) {
 }
 
     app.get('/', function(req, res) {
-        var url_o = url.parse(req.url, true);
+        var url_o = url.parse(req, true);
         console.log(Date() + ' app.get(\'/\', ...)');
         res.render('proverbios/index.ejs', {app_env: process.env.APP_ENV,
                                             app_version: APP_VERSION,
