@@ -25,13 +25,16 @@
     <body style="color: rgb(15, 15, 15 background-color:rgb(250, 250, 250)">
     <h1 style="font-family:Sans-serif;background-color:#C01080; color:white;">Sciensa - Projeto (<%= app_env %>) ver: <%= app_version %></h1><br>
     <!-- <h4> RDS: " + db_host + "/" + database + " ... conectado com sucesso! </h4> -->
+
     <p>Horário UTC deste servidor:  <%= Date() %></p> <br>
+
     <br><button type="button" onclick="alert('Hello World!')">Ol&aacute;!</button>
     <!-- <br><button type="button" onclick="window.location.href=\'http:// + public_dns + :3000/?action=select\'">Select</button> -->
 
     <h3><a href="proverbios" target="_blank">Proverbios</a></h3> <br>
 
     <ul>
+    <li>Host:  <%= process_hostname %> </li>
     <li>Arquitetura:  <%= process_arch %> </li>
     <li>Plataforma:  <%= process_platform %> </li>
     </ul> <br>
