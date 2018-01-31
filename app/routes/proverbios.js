@@ -6,7 +6,7 @@ var url = require('url');
 module.exports = function(app) {
     console.log('module.exports = function(app)');
 
-    var APP_VERSION = '0.02.038a';
+    var APP_VERSION = '0.02.039a';
 
 function log_date_ip(req, path) {
         var ip;
@@ -20,14 +20,14 @@ function log_date_ip(req, path) {
 }
 
     app.get('/', function(req, res) {
-        var page_url = url.parse(req.url, true);
+        var url_o = url.parse(req.url, true);
         console.log(Date() + ' app.get(\'/\', ...)');
         res.render('proverbios/index.ejs', {app_env: process.env.APP_ENV,
                                             app_version: APP_VERSION,
                                             process_pid: process.pid,
                                             process_arch: process.arch,
                                             process_platform: process.platform,
-                                            process_hostname: page_url
+                                            process_hostname: url_o.host + url_o.pathname
                                            }
         );
     });
