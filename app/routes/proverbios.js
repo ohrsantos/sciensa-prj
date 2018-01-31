@@ -1,12 +1,8 @@
-var os = require("os");
-var hostname = os.hostname();
-
-var url = require('url');
 
 module.exports = function(app) {
     console.log('module.exports = function(app)');
 
-    var APP_VERSION = '0.02.039a';
+    var APP_VERSION = '0.02.040a';
 
 function log_date_ip(req, path) {
         var ip;
