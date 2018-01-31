@@ -25,8 +25,8 @@ function log_date_ip(req, path) {
                                             app_version: APP_VERSION,
                                             process_pid: process.pid,
                                             process_arch: process.arch,
-                                            process_platform: process.platform
-                                        //    process_hostname: url.urlObject.href
+                                            process_platform: process.platform,
+                                            process_hostname: hostname
                                            }
         );
     });
