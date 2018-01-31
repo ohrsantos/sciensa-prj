@@ -7,10 +7,10 @@ SCRIPT_NAME="dev.sciensa-prj.run-aws-instance"
 #instance launch. Note that it contains variables and container run command
 #if container will not be used, dissmis those parametrization accordantly
 ################################################################################
-VERSION="0.06a"
+VERSION="0.07a"
 AUTHOR="Orlando Hehl Rebelo dos Santos"
 DATE_INI="14-01-2018"
-DATE_END="26-01-2018"
+DATE_END="30-01-2018"
 ################################################################################
 #Changes:
 #
@@ -26,7 +26,7 @@ REGION="us-east-1"
 if [[ $1 != "CREATE" ]]; then INSTANCE_DRY_RUN="--dry-run"; fi
 INSTANCE_KEY_PAIR="ohrs-aws-key-file"
 INSTANCE_SECURITY_GRP="ohrs-default"
-INSTANCE_NAME="dev-sciensa-prj-DEV"
+INSTANCE_NAME="sciensa-prj-DEV"
 INSTANCE_USR="ec2-user"
 INSTANCE_AMI_ID="ami-428aa838"
 INSTANCE_TYPE="t2.micro"
@@ -123,6 +123,5 @@ done
     $AWS ec2 describe-instances --filters "Name=instance-id, Values=$new_image_id"
 
 echo "${INSTANCE_NAME}" > .instance-name.ohrs
-echo "Wait a little bit to strike \"ENTER\" key in order to send the \".isntance-name\" file..."
-read
+echo "Wait a little bit to strike \"ENTER\" key in order to send the \".instance-name\" file..."
 aws-sh-tk -u a1 -r us-east-1  -l -a scp -K ohrs-aws-key-file $(pwd)/.instance-name.ohrs  \~
