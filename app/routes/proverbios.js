@@ -6,7 +6,7 @@ const url = require('url');
 module.exports = function(app) {
     console.log('module.exports = function(app)');
 
-    var APP_VERSION = '0.02.037a';
+    var APP_VERSION = '0.02.038a';
 
 function log_date_ip(req, path) {
         var ip;
@@ -25,8 +25,8 @@ function log_date_ip(req, path) {
                                             app_version: APP_VERSION,
                                             process_pid: process.pid,
                                             process_arch: process.arch,
-                                            process_platform: process.platform,
-                                            process_hostname: hostname
+                                            process_platform: process.platform
+                                            /*process_hostname: hostname*/
                                            }
         );
     });
