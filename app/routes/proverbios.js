@@ -1,3 +1,5 @@
+var os = require("os");
+
 module.exports = function(app) {
     console.log('module.exports = function(app)');
 
