@@ -23,7 +23,7 @@ Buildis:
 
 CI/CD:
 
-app/deploy.sh UPDATE DEV "ec2-54-161-228-36.compute-1.amazonaws.com" 3000
+app/deploy.sh UPDATE DEV NA 3000
 
 sleep 5
 app/is-server-up.sh >/dev/null 2>&1
