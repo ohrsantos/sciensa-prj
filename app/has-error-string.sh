@@ -4,7 +4,7 @@
 ################################################################################
 SCRIPT_NAME="has-error-string"
 ################################################################################
-VERSION="0.01a"
+VERSION="0.021a"
 AUTHOR="Orlando Hehl Rebelo dos Santos"
 DATE_INI="31-01-2018"
 DATE_END="31-01-2018"
@@ -21,10 +21,11 @@ usage(){
         echo $SCRIPT_NAME
         echo "Usage: $SCRIPT_NAME.sh [-h host] [-p port]"
         echo "  -h   Host name, default is 127.0.0.1"
-        echo "  -h   TCP Port, default is 3000"
+        echo "  -p   TCP Port, default is 3000"
+        echo "  -D   Host name, default is 172.17.0.1 for docker host use"
 }
 
-while getopts "h:p:" arg
+while getopts "h:p:D" arg
 do
         case $arg in
             h)  
@@ -33,6 +34,9 @@ do
             p)  
                 PORT=$OPTARG
                 ;;  
+            D)  
+                HOST=172.17.0.1
+                ;; 
            *)
                 usage
                 exit 1
