@@ -13,37 +13,39 @@ DATE_END="03-02-2018"
 
 # 172.17.0.1 for container use only
 
-HOST=127.0.0.1
+#HOST=127.0.0.1
+HOST=$1
+
 PORT=3000
 
-usage(){
-        echo $SCRIPT_NAME
-        echo "Usage: $SCRIPT_NAME.sh [-h host] [-p port] [-D]"
-        echo "  -h   Host name, default is 127.0.0.1"
-        echo "  -p   TCP Port, default is 3000"
-        echo "  -D   Host name, default is 172.17.0.1 for docker host use"
-}
-
-while getopts "h:p:D" arg
-do
-        case $arg in
-            h)  
-                HOST=$OPTARG
-                ;;  
-            p)  
-                PORT=$OPTARG
-                ;;  
-            h)  
-                HOST=172.17.0.1
-                ;;  
-           *)
-                usage
-                exit 1
-                ;;
-        esac
-done
-
-shift $(($OPTIND - 1))
+#usage(){
+#        echo $SCRIPT_NAME
+#        echo "Usage: $SCRIPT_NAME.sh [-h host] [-p port] [-D]"
+#        echo "  -h   Host name, default is 127.0.0.1"
+#        echo "  -p   TCP Port, default is 3000"
+#        echo "  -D   Host name, default is 172.17.0.1 for docker host use"
+#}
+#
+#while getopts "h:p:D" arg
+#do
+#        case $arg in
+#            h)  
+#                HOST=$OPTARG
+#                ;;  
+#            p)  
+#                PORT=$OPTARG
+#                ;;  
+#            h)  
+#                HOST=172.17.0.1
+#                ;;  
+#           *)
+#                usage
+#                exit 1
+#                ;;
+#        esac
+#done
+#
+#shift $(($OPTIND - 1))
 
 if curl ${HOST}:${PORT} >/dev/null 2>&1; then
    exit 0
