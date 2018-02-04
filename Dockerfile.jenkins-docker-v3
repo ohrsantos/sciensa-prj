@@ -1,6 +1,5 @@
 FROM jenkins/jenkins:lts
 MAINTAINER Orlando Hehl Rebelo dos Santos 
 USER root
-ADD sciensa-jenkins.tar.gz /var/jenkins_home
 RUN apt-get update && apt-get install ksh -y
 RUN curl -fsSLO https://get.docker.com/builds/Linux/x86_64/docker-17.04.0-ce.tgz && tar xzvf docker-17.04.0-ce.tgz  && mv docker/docker /usr/local/bin && rm -r docker docker-17.04.0-ce.tgz
