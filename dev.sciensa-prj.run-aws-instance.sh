@@ -7,10 +7,10 @@ SCRIPT_NAME="dev.sciensa-prj.run-aws-instance"
 #instance launch. Note that it contains variables and container run command
 #if container will not be used, dissmis those parametrization accordantly
 ################################################################################
-VERSION="0.07a"
+VERSION="0.08a"
 AUTHOR="Orlando Hehl Rebelo dos Santos"
 DATE_INI="14-01-2018"
-DATE_END="30-01-2018"
+DATE_END="04-02-2018"
 ################################################################################
 #Changes:
 #
@@ -26,24 +26,23 @@ REGION="us-east-1"
 if [[ $1 != "CREATE" ]]; then INSTANCE_DRY_RUN="--dry-run"; fi
 INSTANCE_KEY_PAIR="ohrs-aws-key-file"
 INSTANCE_SECURITY_GRP="ohrs-default"
-INSTANCE_NAME="sciensa-prj-DEV"
+INSTANCE_NAME="sciensa-prj-DEV2"
 INSTANCE_USR="ec2-user"
 INSTANCE_AMI_ID="ami-428aa838"
 INSTANCE_TYPE="t2.micro"
 INSTANCE_COUNT="1"
 INSTANCE_DATA_FILE="user-data.txt"
 
-#DOCKER_PROFILE="jenkinsci"
-#CONTAINER_REPO="blueocean"
-#CONTAINER_APP_NAME="jenkins"
-#CONTAINER_TAG=""
-#These options bellow due to their many variations,
-#requires that you provide the necessary flags.
-#CONTAINER_MNT_VOLUME="-v jenkins-data:/var/jenkins_home -v jenkins-data:/var/jenkins_home -v \$HOME:/home"
-#CONTAINER_PORT="-p 8080:8080"
-#CONTAINER_OTHERS="-u root"
-################################################################################
+JENKINS_CONTAINER="docker run -d --rm -u root\
+                   -v /var/run/docker.sock:/var/run/docker.sock -v jenkins_docker_home:/var/jenkins_home\
+                   -p 8080:8080 -p 50000:50000\
+                   --name dev-sciensa-jenkins-docker\
+                   ohrsan/sciensa-jenkins-docker:v2"
 
+   echo  "${JENKINS_CONTAINER}"
+#"echo 'PUBLIC_DNS=DEPRICATED APP_ENV=PROD docker run -d --rm -e APP_ENV -e PUBLIC_DNS -p 3000:3000 -p 3001:3001 -v /var/www  --name sciensa-app-PROD ohrsan/node-sciensa-prj:DEV >> /home/ec2-user/rc.local.log 2>&1' >> /etc/rc.d/rc.local"
+
+exit 0
 
 ################################################################################
 # Macros:
@@ -86,12 +85,11 @@ user_data=(
 "yum install -y git java-1.8.0-openjdk-devel"
 "alternatives --config java"
 
-#Jenkins installation
-"wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo"
-"rpm --import http://pkg.jenkins-ci.org/redhat/jenkins-ci.org.key"
-"yum install -y jenkins"
-"service jenkins start"
-"chkconfig --add jenkins"
+#Jenkins Jenkins Container
+"sleep 60"
+"docker login -u=ohrsan -p=bomdia01 >> /home/ec2-user/rc.local.log 2>&1"
+"docker pull node:latest >> /home/ec2-user/rc.local.log 2>&1"
+"${JENKINS_CONTAINER} >> /home/ec2-user/rc.local.log 2>&1"
 
 
 #Creating  /etc/rc.d/rc.local:
@@ -102,8 +100,18 @@ user_data=(
 #"echo \"    sleep 3\" >> /etc/rc.d/rc.local"
 #"echo \"done\" >> /etc/rc.d/rc.local"
 
+#Creating  /etc/rc.d/rc.local:
+"echo sleep 60 >> /etc/rc.d/rc.local"
+
+"echo 'docker login -u=ohrsan -p=bomdia01 >> /home/ec2-user/rc.local.log 2>&1' >> /etc/rc.d/rc.local"
+
+"echo 'docker pull node:latest >> /home/ec2-user/rc.local.log 2>&1' >> /etc/rc.d/rc.local"
+"echo 'PUBLIC_DNS=DEPRICATED APP_ENV=PROD docker run -d --rm -e APP_ENV -e PUBLIC_DNS -p 3000:3000 -p 3001:3001 -v /var/www  --name sciensa-app-PROD ohrsan/node-sciensa-prj:DEV >> /home/ec2-user/rc.local.log 2>&1' >> /etc/rc.d/rc.local"
+"echo \"${JENKINS_CONTAINER} >> /home/ec2-user/rc.local.log 2>&1\" >> /etc/rc.d/rc.local"
+
 # Docker run command ..."
-#"su $INSTANCE_USR -c \"docker run -d ${CONTAINER_PORT} $CONTAINER_MNT_VOLUME --name ${CONTAINER_APP_NAME}-app-${CONTAINER_TAG} ${CONTAINER_OTHERS} ${DOCKER_PROFILE}/${CONTAINER_REPO}${CONTAINER_TAG}\""
+#"su $INSTANCE_USR -c \"${JENKINS_CONTAINER}\""
+#"su $INSTANCE_USR -c \"${JENKINS_CONTAINER}\""
 
 )
 
