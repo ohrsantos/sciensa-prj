@@ -79,9 +79,6 @@ user_data=(
 "chmod +x /etc/rc.d/rc.local"
 
 
-#Java installation
-#"yum install -y git java-1.8.0-openjdk-devel"
-#"alternatives --config java"
 
 "echo ${INSTANCE_NAME} > /home/ec2-user/.instance-name.ohrs"
 
@@ -93,13 +90,6 @@ user_data=(
 "${JENKINS_CONTAINER} >> /home/ec2-user/rc.local.log 2>&1"
 
 
-#Creating  /etc/rc.d/rc.local:
-#"echo sleep 5 >> /etc/rc.d/rc.local"
-#"echo \"for (( i = 0 ; i < 10; i++ )); do\" >> /etc/rc.d/rc.local"
-#"echo \"    pgrep dockerd && /usr/bin/docker start ${CONTAINER_APP_NAME}-app-${CONTAINER_TAG} > /home/$INSTANCE_USR/${CONTAINER_APP_NAME}-app-${CONTAINER_TAG}.docker.log 2>&1; chmod 777 /home/$INSTANCE_USR/${CONTAINER_APP_NAME}-app-${CONTAINER_TAG}.docker.log; exit 0\" >> /etc/rc.d/rc.local"
-#"echo \"    echo sleeping 3 seconds...\" >> /etc/rc.d/rc.local"
-#"echo \"    sleep 3\" >> /etc/rc.d/rc.local"
-#"echo \"done\" >> /etc/rc.d/rc.local"
 
 #Creating  /etc/rc.d/rc.local:
 "echo sleep 20 >> /etc/rc.d/rc.local"
@@ -109,11 +99,6 @@ user_data=(
 "echo 'docker pull node:latest >> /home/ec2-user/rc.local.log 2>&1' >> /etc/rc.d/rc.local"
 "echo \"${APP_CONTAINER} >> /home/ec2-user/rc.local.log 2>&1\" >> /etc/rc.d/rc.local"
 "echo \"${JENKINS_CONTAINER} >> /home/ec2-user/rc.local.log 2>&1\" >> /etc/rc.d/rc.local"
-
-#"echo 'PUBLIC_DNS=NA APP_ENV=DEV docker run -d --rm -e APP_ENV -e PUBLIC_DNS -p 3000:3000 -p 3001:3001 -v /var/www  --name sciensa-app-DEV ohrsan/node-sciensa-prj:DEV >> /home/ec2-user/rc.local.log 2>&1' >> /etc/rc.d/rc.local"
-# Docker run command ..."
-#"su $INSTANCE_USR -c \"${JENKINS_CONTAINER}\""
-#"su $INSTANCE_USR -c \"${JENKINS_CONTAINER}\""
 
 )
 
@@ -131,7 +116,3 @@ done
     
     echo "Instance created, summary:"
     $AWS ec2 describe-instances --filters "Name=instance-id, Values=$new_image_id"
-
-#echo "${INSTANCE_NAME}" > .instance-name.ohrs
-#echo "Wait a little bit to strike \"ENTER\" key in order to send the \".instance-name\" file..."
-#aws-sh-tk -u a1 -r us-east-1  -l -a scp -K ohrs-aws-key-file $(pwd)/.instance-name.ohrs  \~
