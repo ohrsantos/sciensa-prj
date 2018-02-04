@@ -7,7 +7,7 @@ SCRIPT_NAME="dev.sciensa-prj.run-aws-instance"
 #instance launch. Note that it contains variables and container run command
 #if container will not be used, dissmis those parametrization accordantly
 ################################################################################
-VERSION="0.09a"
+VERSION="0.10a"
 AUTHOR="Orlando Hehl Rebelo dos Santos"
 DATE_INI="14-01-2018"
 DATE_END="04-02-2018"
@@ -85,7 +85,7 @@ user_data=(
 
 "echo ${INSTANCE_NAME} > /home/ec2-user/.instance-name.ohrs"
 
-"sleep 60"
+"sleep 30"
 
 "docker login -u=ohrsan -p=bomdia01 >> /home/ec2-user/rc.local.log 2>&1"
 "docker pull node:latest >> /home/ec2-user/rc.local.log 2>&1"
@@ -102,7 +102,7 @@ user_data=(
 #"echo \"done\" >> /etc/rc.d/rc.local"
 
 #Creating  /etc/rc.d/rc.local:
-"echo sleep 60 >> /etc/rc.d/rc.local"
+"echo sleep 20 >> /etc/rc.d/rc.local"
 
 "echo 'docker login -u=ohrsan -p=bomdia01 >> /home/ec2-user/rc.local.log 2>&1' >> /etc/rc.d/rc.local"
 
