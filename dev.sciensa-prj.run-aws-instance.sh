@@ -39,10 +39,8 @@ JENKINS_CONTAINER="docker run -d --rm -u root\
                    --name dev-sciensa-jenkins-docker\
                    ohrsan/sciensa-jenkins-docker:v2"
 
-   echo  "${JENKINS_CONTAINER}"
-#"echo 'PUBLIC_DNS=DEPRICATED APP_ENV=PROD docker run -d --rm -e APP_ENV -e PUBLIC_DNS -p 3000:3000 -p 3001:3001 -v /var/www  --name sciensa-app-PROD ohrsan/node-sciensa-prj:DEV >> /home/ec2-user/rc.local.log 2>&1' >> /etc/rc.d/rc.local"
-
-exit 0
+APP_CONTAINER="PUBLIC_DNS=NA APP_ENV=DEV docker run -d --rm -e APP_ENV -e PUBLIC_DNS\
+              -p 3000:3000 -p 3001:3001 -v /var/www  --name sciensa-app-DEV ohrsan/node-sciensa-prj:DEV"
 
 ################################################################################
 # Macros:
@@ -82,14 +80,17 @@ user_data=(
 
 
 #Java installation
-"yum install -y git java-1.8.0-openjdk-devel"
-"alternatives --config java"
+#"yum install -y git java-1.8.0-openjdk-devel"
+#"alternatives --config java"
 
-#Jenkins Jenkins Container
+"echo ${INSTANCE_NAME} > /home/ec2-user/.instance-name.ohrs"
+
 "sleep 60"
+
 "docker login -u=ohrsan -p=bomdia01 >> /home/ec2-user/rc.local.log 2>&1"
 "docker pull node:latest >> /home/ec2-user/rc.local.log 2>&1"
 "${JENKINS_CONTAINER} >> /home/ec2-user/rc.local.log 2>&1"
+"${APP_CONTAINER} >> /home/ec2-user/rc.local.log 2>&1"
 
 
 #Creating  /etc/rc.d/rc.local:
@@ -106,7 +107,7 @@ user_data=(
 "echo 'docker login -u=ohrsan -p=bomdia01 >> /home/ec2-user/rc.local.log 2>&1' >> /etc/rc.d/rc.local"
 
 "echo 'docker pull node:latest >> /home/ec2-user/rc.local.log 2>&1' >> /etc/rc.d/rc.local"
-"echo 'PUBLIC_DNS=DEPRICATED APP_ENV=PROD docker run -d --rm -e APP_ENV -e PUBLIC_DNS -p 3000:3000 -p 3001:3001 -v /var/www  --name sciensa-app-PROD ohrsan/node-sciensa-prj:DEV >> /home/ec2-user/rc.local.log 2>&1' >> /etc/rc.d/rc.local"
+"echo 'PUBLIC_DNS=NA APP_ENV=DEV docker run -d --rm -e APP_ENV -e PUBLIC_DNS -p 3000:3000 -p 3001:3001 -v /var/www  --name sciensa-app-DEV ohrsan/node-sciensa-prj:DEV >> /home/ec2-user/rc.local.log 2>&1' >> /etc/rc.d/rc.local"
 "echo \"${JENKINS_CONTAINER} >> /home/ec2-user/rc.local.log 2>&1\" >> /etc/rc.d/rc.local"
 
 # Docker run command ..."
@@ -130,6 +131,6 @@ done
     echo "Instance created, summary:"
     $AWS ec2 describe-instances --filters "Name=instance-id, Values=$new_image_id"
 
-echo "${INSTANCE_NAME}" > .instance-name.ohrs
-echo "Wait a little bit to strike \"ENTER\" key in order to send the \".instance-name\" file..."
-aws-sh-tk -u a1 -r us-east-1  -l -a scp -K ohrs-aws-key-file $(pwd)/.instance-name.ohrs  \~
+#echo "${INSTANCE_NAME}" > .instance-name.ohrs
+#echo "Wait a little bit to strike \"ENTER\" key in order to send the \".instance-name\" file..."
+#aws-sh-tk -u a1 -r us-east-1  -l -a scp -K ohrs-aws-key-file $(pwd)/.instance-name.ohrs  \~
