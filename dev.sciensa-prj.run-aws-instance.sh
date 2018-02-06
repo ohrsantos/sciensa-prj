@@ -7,7 +7,7 @@ SCRIPT_NAME="dev.sciensa-prj.run-aws-instance"
 #instance launch. Note that it contains variables and container run command
 #if container will not be used, dissmis those parametrization accordantly
 ################################################################################
-VERSION="0.03b"
+VERSION="0.04b"
 AUTHOR="Orlando Hehl Rebelo dos Santos"
 DATE_INI="14-01-2018"
 DATE_END="06-02-2018"
@@ -65,6 +65,9 @@ user_data=(
 
 #Ksh93 for professional shell scripts... Yeah, ksh rocks!!!
 "yum install -y ksh"
+
+#Git
+"yum install -y git"
 
 #Install the most recent Docker Community Edition package.
 "yum install -y docker"
