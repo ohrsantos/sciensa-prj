@@ -7,10 +7,10 @@ SCRIPT_NAME="dev.sciensa-prj.run-aws-instance"
 #instance launch. Note that it contains variables and container run command
 #if container will not be used, dissmis those parametrization accordantly
 ################################################################################
-VERSION="0.11a"
+VERSION="0.02b"
 AUTHOR="Orlando Hehl Rebelo dos Santos"
 DATE_INI="14-01-2018"
-DATE_END="04-02-2018"
+DATE_END="06-02-2018"
 ################################################################################
 #Changes:
 #
@@ -26,7 +26,7 @@ REGION="us-east-1"
 if [[ $1 != "CREATE" ]]; then INSTANCE_DRY_RUN="--dry-run"; fi
 INSTANCE_KEY_PAIR="ohrs-aws-key-file"
 INSTANCE_SECURITY_GRP="ohrs-default"
-INSTANCE_NAME="sciensa-prj-DEV"
+INSTANCE_NAME="DEV-ohrs-lab"
 INSTANCE_USR="ec2-user"
 INSTANCE_AMI_ID="ami-428aa838"
 INSTANCE_TYPE="t2.micro"
@@ -41,6 +41,8 @@ JENKINS_CONTAINER="docker run -d --rm -u root\
 
 APP_CONTAINER="PUBLIC_DNS=NA APP_ENV=DEV docker run -d --rm -e APP_ENV -e PUBLIC_DNS\
               -p 3000:3000 -p 3001:3001 -v /var/www  --name sciensa-app-DEV ohrsan/node-sciensa-prj:DEV"
+
+CPPCMS_CONTAINER="docker run -d --rm -p 3333:8080 -v /opt/cppcms  --name cppcms-DEV ohrsan/cppcms:v1"
 
 ################################################################################
 # Macros:
@@ -88,6 +90,7 @@ user_data=(
 "docker pull node:latest >> /home/ec2-user/rc.local.log 2>&1"
 "${APP_CONTAINER} >> /home/ec2-user/rc.local.log 2>&1"
 "${JENKINS_CONTAINER} >> /home/ec2-user/rc.local.log 2>&1"
+"${CPPCMS_CONTAINER} >> /home/ec2-user/rc.local.log 2>&1"
 
 
 
@@ -99,6 +102,7 @@ user_data=(
 "echo 'docker pull node:latest >> /home/ec2-user/rc.local.log 2>&1' >> /etc/rc.d/rc.local"
 "echo \"${APP_CONTAINER} >> /home/ec2-user/rc.local.log 2>&1\" >> /etc/rc.d/rc.local"
 "echo \"${JENKINS_CONTAINER} >> /home/ec2-user/rc.local.log 2>&1\" >> /etc/rc.d/rc.local"
+"echo \"${CPPCMS_CONTAINER} >> /home/ec2-user/rc.local.log 2>&1\" >> /etc/rc.d/rc.local"
 
 )
 
