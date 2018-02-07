@@ -74,6 +74,9 @@ user_data=(
 #Install the most recent Docker Community Edition package.
 "yum install -y docker"
 
+#Add the ec2-user to the root group 
+"usermod -a -G root ec2-user"
+
 #Add the ec2-user to the docker group so you can execute Docker commands without using sudo.
 "usermod -a -G docker ec2-user"
 
