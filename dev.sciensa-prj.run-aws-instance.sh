@@ -7,7 +7,7 @@ SCRIPT_NAME="dev.sciensa-prj.run-aws-instance"
 #instance launch. Note that it contains variables and container run command
 #if container will not be used, dissmis those parametrization accordantly
 ################################################################################
-VERSION="0.05b"
+VERSION="0.05a"
 AUTHOR="Orlando Hehl Rebelo dos Santos"
 DATE_INI="14-01-2018"
 DATE_END="06-02-2018"
@@ -44,7 +44,7 @@ APP_CONTAINER="PUBLIC_DNS=NA APP_ENV=DEV docker run -d --rm -e APP_ENV -e PUBLIC
 
 CPPCMS_CONTAINER="docker run -it --rm -u root -v /opt/cppcms  -p 3333:8080  --name dev-cppcms-docker ohrsan/cppcms:v1"
 
-METEOR_CONTAINER="docker run -d --rm  -p 3333:3000 -v meteor-app:/var/meteor --name meteor-base-app ohrsan/meteor-base-app:1"
+METEOR_CONTAINER="docker run -d --rm  -p 3333:3000 -v meteor-app:/var/meteor --name meteor-app ohrsan/app-meteor:1"
 
 ################################################################################
 # Macros:
@@ -91,25 +91,26 @@ user_data=(
 
 "curl -o /etc/profile.d/ohrs-profile.sh https://raw.githubusercontent.com/ohrsantos/etc/master/.ohrs.profile"
 
-"sleep 30"
+"sleep 15"
 
 "docker login -u=ohrsan -p=bomdia01 >> /home/ec2-user/rc.local.log 2>&1"
 "docker pull node:latest >> /home/ec2-user/rc.local.log 2>&1"
 "${APP_CONTAINER} >> /home/ec2-user/rc.local.log 2>&1"
 "${JENKINS_CONTAINER} >> /home/ec2-user/rc.local.log 2>&1"
-"${CPPCMS_CONTAINER} >> /home/ec2-user/rc.local.log 2>&1"
+#"${CPPCMS_CONTAINER} >> /home/ec2-user/rc.local.log 2>&1"
 
 
 
 #Creating  /etc/rc.d/rc.local:
-"echo sleep 20 >> /etc/rc.d/rc.local"
+"echo sleep 15 >> /etc/rc.d/rc.local"
 
 "echo 'docker login -u=ohrsan -p=bomdia01 >> /home/ec2-user/rc.local.log 2>&1' >> /etc/rc.d/rc.local"
 
 "echo 'docker pull node:latest >> /home/ec2-user/rc.local.log 2>&1' >> /etc/rc.d/rc.local"
 "echo \"${APP_CONTAINER} >> /home/ec2-user/rc.local.log 2>&1\" >> /etc/rc.d/rc.local"
 "echo \"${JENKINS_CONTAINER} >> /home/ec2-user/rc.local.log 2>&1\" >> /etc/rc.d/rc.local"
-"echo \"${CPPCMS_CONTAINER} >> /home/ec2-user/rc.local.log 2>&1\" >> /etc/rc.d/rc.local"
+"echo \"#${CPPCMS_CONTAINER} >> /home/ec2-user/rc.local.log 2>&1\" >> /etc/rc.d/rc.local"
+"echo \"#${METEOR_CONTAINER} >> /home/ec2-user/rc.local.log 2>&1\" >> /etc/rc.d/rc.local"
 )
 
 
