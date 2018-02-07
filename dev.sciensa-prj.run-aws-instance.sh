@@ -89,7 +89,7 @@ user_data=(
 
 "echo ${INSTANCE_NAME} > /home/ec2-user/.instance-name.ohrs"
 
-"curl -o /etc/profile.d/ohrs-profile.sh https://github.com/ohrsantos/etc/blob/master/.ohrs.profile"
+"curl -o /etc/profile.d/ohrs-profile.sh https://raw.githubusercontent.com/ohrsantos/etc/master/.ohrs.profile"
 
 "sleep 30"
 
