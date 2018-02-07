@@ -7,7 +7,7 @@ SCRIPT_NAME="dev.sciensa-prj.run-aws-instance"
 #instance launch. Note that it contains variables and container run command
 #if container will not be used, dissmis those parametrization accordantly
 ################################################################################
-VERSION="0.04b"
+VERSION="0.05b"
 AUTHOR="Orlando Hehl Rebelo dos Santos"
 DATE_INI="14-01-2018"
 DATE_END="06-02-2018"
@@ -43,6 +43,8 @@ APP_CONTAINER="PUBLIC_DNS=NA APP_ENV=DEV docker run -d --rm -e APP_ENV -e PUBLIC
               -p 3000:3000 -p 3001:3001 -v /var/www  --name sciensa-app-DEV ohrsan/node-sciensa-prj:DEV"
 
 CPPCMS_CONTAINER="docker run -it --rm -u root -v /opt/cppcms  -p 3333:8080  --name dev-cppcms-docker ohrsan/cppcms:v1"
+
+METEOR_CONTAINER="docker run -d --rm  -p 3333:3000 -v meteor-app:/var/meteor --name meteor-base-app ohrsan/meteor-base-app:1"
 
 ################################################################################
 # Macros:
@@ -87,6 +89,8 @@ user_data=(
 
 "echo ${INSTANCE_NAME} > /home/ec2-user/.instance-name.ohrs"
 
+"curl -o /etc/profile.d/ohrs-profile.sh https://github.com/ohrsantos/etc/blob/master/.ohrs.profile"
+
 "sleep 30"
 
 "docker login -u=ohrsan -p=bomdia01 >> /home/ec2-user/rc.local.log 2>&1"
@@ -106,7 +110,6 @@ user_data=(
 "echo \"${APP_CONTAINER} >> /home/ec2-user/rc.local.log 2>&1\" >> /etc/rc.d/rc.local"
 "echo \"${JENKINS_CONTAINER} >> /home/ec2-user/rc.local.log 2>&1\" >> /etc/rc.d/rc.local"
 "echo \"${CPPCMS_CONTAINER} >> /home/ec2-user/rc.local.log 2>&1\" >> /etc/rc.d/rc.local"
-
 )
 
 
