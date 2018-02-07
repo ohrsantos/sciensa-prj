@@ -105,6 +105,7 @@ user_data=(
 #"${CPPCMS_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1"
 
 "chmod g+x /var/lib/docker/volumes"
+"chown -R ec2-user:ec2-user /var/lib/docker/volumes/meteor-app/_data"
 
 #Creating  /etc/rc.d/rc.local:
 "echo sleep 15 >> /etc/rc.d/rc.local"
