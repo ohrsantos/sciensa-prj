@@ -7,7 +7,7 @@ SCRIPT_NAME="dev.sciensa-prj.run-aws-instance"
 #instance launch. Note that it contains variables and container run command
 #if container will not be used, dissmis those parametrization accordantly
 ################################################################################
-VERSION="0.09a"
+VERSION="0.10a"
 AUTHOR="Orlando Hehl Rebelo dos Santos"
 DATE_INI="14-01-2018"
 DATE_END="08-02-2018"
@@ -44,7 +44,8 @@ APP_CONTAINER="PUBLIC_DNS=NA APP_ENV=DEV docker run -d --rm -e APP_ENV -e PUBLIC
 
 CPPCMS_CONTAINER="docker run -it --rm -u root -v /opt/cppcms  -p 3333:8080  --name dev-cppcms-docker ohrsan/cppcms:v1"
 
-METEOR_CONTAINER="docker run -d --rm  -p 3333:3000 -v meteor-app:/var/meteor --name app-test-meteor ohrsan/app-test-meteor:1"
+APP_TEST3_METEOR_CONTAINER_NAME=app-test3-meteor
+APP_TEST3_METEOR_CONTAINER="docker run -d --rm  -p 3333:3000 -v ${APP_TEST3_METEOR_CONTAINER_NAME}:/var/meteor --name ${APP_TEST3_METEOR_CONTAINER_NAME} ohrsan/${APP_TEST3_METEOR_CONTAINER_NAME}:1"
 
 ################################################################################
 # Macros:
@@ -103,7 +104,7 @@ user_data=(
 #"${APP_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1"
 #"${JENKINS_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1"
 #"${CPPCMS_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1"
-"${METEOR_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1"
+"${APP_TEST3_METEOR_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1"
 
 "chmod g+x /var/lib/docker/volumes"
 "chown -R ec2-user:ec2-user /var/lib/docker/volumes/meteor-app/_data"
@@ -117,7 +118,7 @@ user_data=(
 "echo \"${APP_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1\" >> /etc/rc.d/rc.local"
 "echo \"${JENKINS_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1\" >> /etc/rc.d/rc.local"
 "echo \"#${CPPCMS_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1\" >> /etc/rc.d/rc.local"
-"echo \"#${METEOR_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1\" >> /etc/rc.d/rc.local"
+"echo \"#${APP_TEST3_METEOR_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1\" >> /etc/rc.d/rc.local"
 )
 
 
