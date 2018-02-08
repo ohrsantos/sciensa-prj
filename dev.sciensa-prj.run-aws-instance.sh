@@ -100,9 +100,10 @@ user_data=(
 
 "docker login -u=ohrsan -p=bomdia01 >> /home/ec2-user/instance-creation.log 2>&1"
 "docker pull node:latest >> /home/ec2-user/instance-creation.log 2>&1"
-"${APP_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1"
-"${JENKINS_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1"
+#"${APP_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1"
+#"${JENKINS_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1"
 #"${CPPCMS_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1"
+"${METEOR_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1"
 
 "chmod g+x /var/lib/docker/volumes"
 "chown -R ec2-user:ec2-user /var/lib/docker/volumes/meteor-app/_data"
