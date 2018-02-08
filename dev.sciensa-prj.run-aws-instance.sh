@@ -7,7 +7,7 @@ SCRIPT_NAME="dev.sciensa-prj.run-aws-instance"
 #instance launch. Note that it contains variables and container run command
 #if container will not be used, dissmis those parametrization accordantly
 ################################################################################
-VERSION="0.10a"
+VERSION="0.11a"
 AUTHOR="Orlando Hehl Rebelo dos Santos"
 DATE_INI="14-01-2018"
 DATE_END="08-02-2018"
@@ -106,8 +106,8 @@ user_data=(
 #"${CPPCMS_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1"
 "${APP_TEST3_METEOR_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1"
 
-"chmod g+x /var/lib/docker/volumes"
-"chown -R ec2-user:ec2-user /var/lib/docker/volumes/meteor-app/_data"
+"chmod g+rx /var/lib/docker/volumes"
+"chown -R ec2-user:ec2-user /var/lib/docker/volumes/${APP_TEST3_METEOR_CONTAINER_NAME}/_data"
 
 #Creating  /etc/rc.d/rc.local:
 "echo sleep 15 >> /etc/rc.d/rc.local"
