@@ -1,6 +1,7 @@
 var mysql  = require('mysql');
 
-var db_host="sciensa-db-instance.cbfgofnkvvl3.us-east-1.rds.amazonaws.com";
+var db_host="ohrs-mysql-db.cbfgofnkvvl3.us-east-1.rds.amazonaws.com";
+//var db_host="sciensa-db-instance.cbfgofnkvvl3.us-east-1.rds.amazonaws.com";
 
 if (process.env.APP_ENV == "DEV") 
    var database="sciensa_dev";
