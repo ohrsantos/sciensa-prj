@@ -7,10 +7,10 @@ SCRIPT_NAME="dev.sciensa-prj.run-aws-instance"
 #instance launch. Note that it contains variables and container run command
 #if container will not be used, dissmis those parametrization accordantly
 ################################################################################
-VERSION="0.07a"
+VERSION="0.09a"
 AUTHOR="Orlando Hehl Rebelo dos Santos"
 DATE_INI="14-01-2018"
-DATE_END="06-02-2018"
+DATE_END="08-02-2018"
 ################################################################################
 #Changes:
 #
@@ -44,7 +44,7 @@ APP_CONTAINER="PUBLIC_DNS=NA APP_ENV=DEV docker run -d --rm -e APP_ENV -e PUBLIC
 
 CPPCMS_CONTAINER="docker run -it --rm -u root -v /opt/cppcms  -p 3333:8080  --name dev-cppcms-docker ohrsan/cppcms:v1"
 
-METEOR_CONTAINER="docker run -d --rm  -p 3333:3000 -v meteor-app:/var/meteor --name meteor-app ohrsan/app-meteor:1"
+METEOR_CONTAINER="docker run -d --rm  -p 3333:3000 -v meteor-app:/var/meteor --name app-test-meteor ohrsan/app-test-meteor:1"
 
 ################################################################################
 # Macros:
