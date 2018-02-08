@@ -12,7 +12,7 @@ function createDBConnection() {
     return mysql.createConnection({
         host: db_host,
         user: 'root',
-        password: 'sciensa1',
+        password: '01234567',
         database: database
     });
 }
