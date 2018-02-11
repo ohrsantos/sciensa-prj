@@ -44,8 +44,8 @@ SCIENSA_APP_CONTAINER="PUBLIC_DNS=NA APP_ENV=DEV docker run -d --rm -e APP_ENV -
 
 CPPCMS_CONTAINER="docker run -it --rm -u root -v /opt/cppcms  -p 3333:8080  --name dev-cppcms-docker ohrsan/cppcms:v1"
 
-APP_TEST3_METEOR_CONTAINER_NAME=app-test3-meteor
-APP_TEST3_METEOR_CONTAINER="docker run -d --rm  -p 3333:3000 -v ${APP_TEST3_METEOR_CONTAINER_NAME}:/var/meteor --name ${APP_TEST3_METEOR_CONTAINER_NAME} ohrsan/${APP_TEST3_METEOR_CONTAINER_NAME}:1"
+TUTORIAL_APP_METEOR_CONTAINER_NAME=app-test3-meteor
+TUTORIAL_APP_METEOR_CONTAINER="docker run -d --rm  -p 3333:3000 -v ${TUTORIAL_APP_METEOR_CONTAINER_NAME}:/var/meteor --name ${TUTORIAL_APP_METEOR_CONTAINER_NAME} ohrsan/${TUTORIAL_APP_METEOR_CONTAINER_NAME}:1"
 
 ################################################################################
 # Macros:
@@ -104,12 +104,12 @@ user_data=(
 #"${SCIENSA_APP_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1"
 #"${JENKINS_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1"
 #"${CPPCMS_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1"
-"${APP_TEST3_METEOR_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1"
+"${TUTORIAL_APP_METEOR_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1"
 
 "chmod  g+rx /var/lib"
 "chmod  g+rx /var/lib/docker"
 "chmod -R g+rx /var/lib/docker/volumes"
-"chown -R ec2-user:ec2-user /var/lib/docker/volumes/${APP_TEST3_METEOR_CONTAINER_NAME}/_data"
+"chown -R ec2-user:ec2-user /var/lib/docker/volumes/${TUTORIAL_APP_METEOR_CONTAINER_NAME}/_data"
 
 #Creating  /etc/rc.d/rc.local:
 "echo sleep 15 >> /etc/rc.d/rc.local"
@@ -120,7 +120,7 @@ user_data=(
 "echo \"${SCIENSA_APP_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1\" >> /etc/rc.d/rc.local"
 "echo \"${JENKINS_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1\" >> /etc/rc.d/rc.local"
 "echo \"#${CPPCMS_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1\" >> /etc/rc.d/rc.local"
-"echo \"#${APP_TEST3_METEOR_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1\" >> /etc/rc.d/rc.local"
+"echo \"#${TUTORIAL_APP_METEOR_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1\" >> /etc/rc.d/rc.local"
 )
 
 
