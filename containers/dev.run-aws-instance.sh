@@ -10,7 +10,7 @@ SCRIPT_NAME="dev.run-aws-instance"
 VERSION="0.12a"
 AUTHOR="Orlando Hehl Rebelo dos Santos"
 DATE_INI="14-01-2018"
-DATE_END="08-02-2018"
+DATE_END="11-02-2018"
 ################################################################################
 #Changes:
 #
@@ -39,7 +39,7 @@ JENKINS_CONTAINER="docker run -d --rm -u root\
                    --name dev-sciensa-jenkins-docker\
                    ohrsan/sciensa-jenkins-docker:v2"
 
-APP_CONTAINER="PUBLIC_DNS=NA APP_ENV=DEV docker run -d --rm -e APP_ENV -e PUBLIC_DNS\
+SCIENSA_APP_CONTAINER="PUBLIC_DNS=NA APP_ENV=DEV docker run -d --rm -e APP_ENV -e PUBLIC_DNS\
               -p 3000:3000 -p 3001:3001 -v /var/www  --name sciensa-app-DEV ohrsan/node-sciensa-prj:DEV"
 
 CPPCMS_CONTAINER="docker run -it --rm -u root -v /opt/cppcms  -p 3333:8080  --name dev-cppcms-docker ohrsan/cppcms:v1"
@@ -101,7 +101,7 @@ user_data=(
 
 "docker login -u=ohrsan -p=bomdia01 >> /home/ec2-user/instance-creation.log 2>&1"
 "docker pull node:latest >> /home/ec2-user/instance-creation.log 2>&1"
-#"${APP_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1"
+#"${SCIENSA_APP_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1"
 #"${JENKINS_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1"
 #"${CPPCMS_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1"
 "${APP_TEST3_METEOR_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1"
@@ -117,7 +117,7 @@ user_data=(
 "echo 'docker login -u=ohrsan -p=bomdia01 >> /home/ec2-user/instance-creation.log 2>&1' >> /etc/rc.d/rc.local"
 
 "echo 'docker pull node:latest >> /home/ec2-user/instance-creation.log 2>&1' >> /etc/rc.d/rc.local"
-"echo \"${APP_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1\" >> /etc/rc.d/rc.local"
+"echo \"${SCIENSA_APP_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1\" >> /etc/rc.d/rc.local"
 "echo \"${JENKINS_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1\" >> /etc/rc.d/rc.local"
 "echo \"#${CPPCMS_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1\" >> /etc/rc.d/rc.local"
 "echo \"#${APP_TEST3_METEOR_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1\" >> /etc/rc.d/rc.local"
