@@ -31,8 +31,7 @@ function start {
         exit 2
     fi
     echo ">>>> Construindo a imagem com o codigo atualizado..."
-    cd containers
-    if docker  build -f Dockerfile.sciensa-app -t ohrsan/node-sciensa-prj:${APP_ENV} .; then
+    if docker  build -f containers/Dockerfile.sciensa-app -t ohrsan/node-sciensa-prj:${APP_ENV} .; then
         echo ">>>> Imagem construida com sucesso!"
         echo ">>>> Inicializando container sciensa-app-${APP_ENV} $HOST:$APP_PORT"
         docker run -d  --rm -e APP_ENV -e PUBLIC_DNS -p $APP_PORT:3000 -p 3001:3001 -v /var/www  --name sciensa-app-${APP_ENV} ohrsan/node-sciensa-prj:${APP_ENV} || exit 3
