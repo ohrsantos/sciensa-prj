@@ -7,7 +7,7 @@ SCRIPT_NAME="dev.run-aws-instance"
 #instance launch. Note that it contains variables and container run command
 #if container will not be used, dissmis those parametrization accordantly
 ################################################################################
-VERSION="0.12a"
+VERSION="0.13a"
 AUTHOR="Orlando Hehl Rebelo dos Santos"
 DATE_INI="14-01-2018"
 DATE_END="11-02-2018"
@@ -66,14 +66,7 @@ user_data=(
 #set locale
 "localectl set-locale LANG=en_US.utf8"
 
-#Ksh93 for professional shell scripts... Yeah, ksh rocks!!!
-"yum install -y ksh"
-
-#Git
-"yum install -y git"
-
-#Install the most recent Docker Community Edition package.
-"yum install -y docker"
+"yum install ksh git docker tree -y"
 
 #Add the ec2-user to the root group 
 "usermod -a -G root ec2-user"
