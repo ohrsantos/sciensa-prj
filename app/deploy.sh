@@ -15,8 +15,12 @@ function stop {
         echo ">>>> Container parado com sucesso!"
     fi
     echo ">>>> Removendo imagem ..."
-    docker rmi -f ohrsan/node-sciensa-prj:${APP_ENV} || exit 1
-    echo ">>>> Imagem removida com sucesso ..."
+    if docker rmi -f ohrsan/node-sciensa-prj:${APP_ENV}; then
+        echo ">>>> Imagem removida com sucesso ..."
+    else
+        echo ">>>> ATENCAO: A imagem nao foi removida com sucesso ..."
+    fi
+
 }
 
 function start {
