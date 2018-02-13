@@ -1,5 +1,54 @@
 <html>
+    <head>
+        <title>Provérbios </title><meta charset="utf-8">
+        <meta charset="utf-8">
+        <!-- Latest compiled and minified CSS --> 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <!-- jQuery library --> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript --> 
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://s3.amazonaws.com/ohrs-aws/css/site.css">
+        <style>
+            body {
+                color: rgb(15, 15, 15);
+                background-color:rgb(250, 250, 250);
+            }   
+            h1 {
+                font-family:Sans-serif;
+                background-color:#993366;
+                color:white;
+            }   
+            img { 
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width:25%; 
+            }   
+            .line-info{
+                color: #696979;
+                font-size:115%;
+            }   
+        </style>
+    </head>
+
     <body>
+        <nav class="navbar navbar-inverse">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="https://s3.amazonaws.com/ohrs-aws/index.html">Home</a>
+            </div>
+            <ul class="nav navbar-nav">
+              <li><a href="http://aws-alb-lab-942269274.us-east-1.elb.amazonaws.com:4000"> Dev </a></li>
+              <li><a href="http://aws-alb-lab-942269274.us-east-1.elb.amazonaws.com:4001"> Prod </a></li>
+            </ul>
+            <p class="navbar-text" style="font-family:Sans-serif;color:#dd7744"> Provérbios </p>
+            <p class="navbar-text" style="font-family:Sans-serif;float:right"> Horário UTC:  <span style="color:#ffffff"> <%= Date() %> </span></p>
+          </div>
+        </nav>
+
+        <h1> Provérbios </h1>
         <table border="0px">
             <tr>
                 <td>Lingua</td>
