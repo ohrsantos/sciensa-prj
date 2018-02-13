@@ -37,7 +37,7 @@ JENKINS_CONTAINER="docker run -d --rm -u root\
                    -v /var/run/docker.sock:/var/run/docker.sock -v jenkins_docker_home:/var/jenkins_home\
                    -p 8080:8080 -p 50000:50000\
                    --name dev-sciensa-jenkins-docker\
-                   ohrsan/sciensa-jenkins-docker:v2"
+                   ohrsan/sciensa-jenkins-docker:3"
 
 SCIENSA_APP_CONTAINER="PUBLIC_DNS=NA APP_ENV=DEV docker run -d --rm -e APP_ENV -e PUBLIC_DNS\
               -p 3000:3000 -p 3001:3001 -v /var/www  --name sciensa-app-DEV ohrsan/node-sciensa-prj:DEV"
