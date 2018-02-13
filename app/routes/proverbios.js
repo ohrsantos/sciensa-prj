@@ -39,6 +39,17 @@ function log_date_ip(req, path) {
         connection.end();
     });
 
+    app.post('/proverbios/form', function(req, res) {
+        var connection = app.infra.connectionFactory();
+        var ProverbiosDAO = new app.infra.ProverbiosDAO(connection);
+
+        //ProverbiosDAO.lista(function(err, results) {
+            res.render('proverbios/form');
+        //});
+
+        connection.end();
+    });
+
 /*
 Os fragmentos de codigo estao sendo deixados comentados aqui "por hora", para talvez serem reaproveitado
 no futuro
