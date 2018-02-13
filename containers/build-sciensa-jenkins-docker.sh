@@ -5,6 +5,8 @@ WORK_DIR=$(pwd)
 
 cd $SCIENSA_JENKINS_HOME
 
+sudo rm -rf jobs/sciensa-prj/nextBuildNumber jobs/sciensa-prj/builds/*
+
 tar zcvf sciensa-jenkins.tar.gz *
 
 #This version is for the case with need hidden files
