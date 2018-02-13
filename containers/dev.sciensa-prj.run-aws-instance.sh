@@ -7,7 +7,7 @@ SCRIPT_NAME="dev.run-aws-instance"
 #instance launch. Note that it contains variables and container run command
 #if container will not be used, dissmis those parametrization accordantly
 ################################################################################
-VERSION="0.18a"
+VERSION="0.19a"
 AUTHOR="Orlando Hehl Rebelo dos Santos"
 DATE_INI="14-01-2018"
 DATE_END="13-02-2018"
@@ -32,6 +32,8 @@ INSTANCE_AMI_ID="ami-428aa838"
 INSTANCE_TYPE="t2.micro"
 INSTANCE_COUNT="1"
 INSTANCE_DATA_FILE="user-data.txt"
+
+RANCHER_SERVER_CONTAINER="sudo docker run -d --restart=unless-stopped -p 8081:8080 rancher/server:stable"
 
 JENKINS_CONTAINER="docker run -d --rm -u root\
                    -v /var/run/docker.sock:/var/run/docker.sock -v jenkins_docker_home:/var/jenkins_home\
@@ -94,8 +96,9 @@ user_data=(
 
 "docker login -u=ohrsan -p=bomdia01 >> /home/ec2-user/instance-creation.log 2>&1"
 "docker pull node:latest >> /home/ec2-user/instance-creation.log 2>&1"
-"${SCIENSA_APP_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1"
-"${JENKINS_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1"
+"${RANCHER_SERVER_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1"
+#"${SCIENSA_APP_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1"
+#"${JENKINS_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1"
 #"${CPPCMS_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1"
 #"${TUTORIAL_APP_METEOR_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1"
 
@@ -110,8 +113,9 @@ user_data=(
 "echo 'docker login -u=ohrsan -p=bomdia01 >> /home/ec2-user/instance-creation.log 2>&1' >> /etc/rc.d/rc.local"
 
 "echo 'docker pull node:latest >> /home/ec2-user/instance-creation.log 2>&1' >> /etc/rc.d/rc.local"
-"echo \"${SCIENSA_APP_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1\" >> /etc/rc.d/rc.local"
-"echo \"${JENKINS_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1\" >> /etc/rc.d/rc.local"
+"echo \"${RANCHER_SERVER_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1\" >> /etc/rc.d/rc.local"
+"echo \"#${SCIENSA_APP_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1\" >> /etc/rc.d/rc.local"
+"echo \"#${JENKINS_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1\" >> /etc/rc.d/rc.local"
 "echo \"#${CPPCMS_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1\" >> /etc/rc.d/rc.local"
 "echo \"#${TUTORIAL_APP_METEOR_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1\" >> /etc/rc.d/rc.local"
 )
@@ -136,6 +140,7 @@ echo "Waiting for the instance reach running state..."
 sleep 60
 
 echo "Attaching instances to their respective target groups..."
+$AWS  elbv2 register-targets --target-group-arn arn:aws:elasticloadbalancing:us-east-1:606784160785:targetgroup/rancher-server/4c4da2ec95c5f5d7 --targets Id=$new_instance_id
 $AWS  elbv2 register-targets --target-group-arn arn:aws:elasticloadbalancing:us-east-1:606784160785:targetgroup/jenkins-dev/49d5199a83cf3941 --targets Id=$new_instance_id
 $AWS  elbv2 register-targets --target-group-arn arn:aws:elasticloadbalancing:us-east-1:606784160785:targetgroup/sciensa-dev/30895b398b8dd2bb --targets Id=$new_instance_id
-#$AWS  elbv2 register-targets --target-group-arn arn:aws:elasticloadbalancing:us-east-1:606784160785:targetgroup/cppcms-dev/4c9decd880e3678e  --targets Id=$new_instance_id
+$AWS  elbv2 register-targets --target-group-arn arn:aws:elasticloadbalancing:us-east-1:606784160785:targetgroup/cppcms-dev/4c9decd880e3678e  --targets Id=$new_instance_id
