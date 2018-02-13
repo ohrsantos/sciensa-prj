@@ -50,6 +50,22 @@ module.exports = function(app) {
         connection.end();
     });
 
+    app.post('/proverbios/insert', function(req, res) {
+        var connection = app.infra.connectionFactory();
+        var ProverbiosDAO = new app.infra.ProverbiosDAO(connection);
+
+        var proverbio = req.body;
+
+        ProverbiosDAO.insert(proverbio, function(err, results) {
+            res.render('proverbios/lista', {lista: results});
+        });
+        //ProverbiosDAO.lista(function(err, results) {
+            res.render('proverbios/form');
+        //});
+
+        connection.end();
+    });
+
 /*
 Os fragmentos de codigo estao sendo deixados comentados aqui "por hora", para talvez serem reaproveitado
 no futuro
