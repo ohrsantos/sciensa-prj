@@ -50,7 +50,7 @@ module.exports = function(app) {
         connection.end();
     });
 
-    app.post('/proverbios/insert', function(req, res) {
+    app.post('/proverbios', function(req, res) {
         var connection = app.infra.connectionFactory();
         var ProverbiosDAO = new app.infra.ProverbiosDAO(connection);
 
