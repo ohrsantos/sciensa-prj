@@ -43,9 +43,7 @@ module.exports = function(app) {
         var connection = app.infra.connectionFactory();
         var ProverbiosDAO = new app.infra.ProverbiosDAO(connection);
 
-        //ProverbiosDAO.lista(function(err, results) {
             res.render('proverbios/form');
-        //});
 
         connection.end();
     });
@@ -56,11 +54,15 @@ module.exports = function(app) {
 
         var proverbio = req.body;
 
-console.log(proverbio);
+        console.log(proverbio);
 
         ProverbiosDAO.insert(proverbio, function(err, results) {
-            res.render('proverbios/lista', {lista: results});
+            ProverbiosDAO.lista(function(err, results) {
+                res.render('proverbios/lista', {lista: results});
+            });
         });
+
+
 
         connection.end();
     });
