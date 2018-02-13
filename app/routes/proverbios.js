@@ -59,7 +59,7 @@ module.exports = function(app) {
         console.log(proverbio);
 
         ProverbiosDAO.insert(proverbio, function(err, results) {
-            listaProverbios(req, res);
+            res.redirect('/proverbios');
             //ProverbiosDAO.lista(function(err, results) {
                 //res.render('proverbios/lista', {lista: results});
             //});
