@@ -57,9 +57,10 @@ module.exports = function(app) {
         var proverbio = req.body;
 
 console.log(proverbio);
-        //ProverbiosDAO.insert(proverbio, function(err, results) {
-            //res.render('proverbios/lista', {lista: results});
-        //});
+
+        ProverbiosDAO.insert(proverbio, function(err, results) {
+            res.render('proverbios/lista', {lista: results});
+        });
 
         connection.end();
     });
