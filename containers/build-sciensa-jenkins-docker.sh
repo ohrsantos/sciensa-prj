@@ -18,4 +18,4 @@ docker build -f Dockerfile.sciensa-jenkins-docker  -t ohrsan/sciensa-jenkins-doc
 
 docker login -u=ohrsan -p=bomdia01
 
-docker push ohrsan/sciensa-jenkins-docker:v3
+docker push ohrsan/sciensa-jenkins-docker:3
