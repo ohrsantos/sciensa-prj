@@ -7,7 +7,7 @@ SCRIPT_NAME="dev.run-aws-instance"
 #instance launch. Note that it contains variables and container run command
 #if container will not be used, dissmis those parametrization accordantly
 ################################################################################
-VERSION="0.15a"
+VERSION="0.17a"
 AUTHOR="Orlando Hehl Rebelo dos Santos"
 DATE_INI="14-01-2018"
 DATE_END="13-02-2018"
@@ -37,7 +37,7 @@ JENKINS_CONTAINER="docker run -d --rm -u root\
                    -v /var/run/docker.sock:/var/run/docker.sock -v jenkins_docker_home:/var/jenkins_home\
                    -p 8080:8080 -p 50000:50000\
                    --name dev-sciensa-jenkins-docker\
-                   ohrsan/sciensa-jenkins-docker:3"
+                   ohrsan/sciensa-jenkins-docker:04"
 
 SCIENSA_APP_CONTAINER="PUBLIC_DNS=NA APP_ENV=DEV docker run -d --rm -e APP_ENV -e PUBLIC_DNS\
               -p 3000:3000 -p 3001:3001 -v /var/www  --name sciensa-app-DEV ohrsan/node-sciensa-prj:DEV"
