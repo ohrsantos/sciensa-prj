@@ -9,6 +9,8 @@ module.exports = function() {
     app.set('views', './app/views');
     app.use(express.static('./app/public'));
 
+    app.use(bodyParser.urlencoded());
+
     load('routes', {cwd: 'app'})
         .then('infra')
         .into(app);
