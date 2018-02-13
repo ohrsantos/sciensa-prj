@@ -28,7 +28,7 @@ module.exports = function(app) {
         );
     });
 
-    app.get('/proverbios', function(req, res) {
+    var listaProverbios = function(req, res) {
         var connection = app.infra.connectionFactory();
         var ProverbiosDAO = new app.infra.ProverbiosDAO(connection);
 
@@ -38,6 +38,8 @@ module.exports = function(app) {
 
         connection.end();
     });
+
+    app.get('/proverbios', listaProverbios);
 
     app.get('/proverbios/form', function(req, res) {
         var connection = app.infra.connectionFactory();
@@ -57,9 +59,10 @@ module.exports = function(app) {
         console.log(proverbio);
 
         ProverbiosDAO.insert(proverbio, function(err, results) {
-            ProverbiosDAO.lista(function(err, results) {
-                res.render('proverbios/lista', {lista: results});
-            });
+            listaProverbios(req, res);
+            //ProverbiosDAO.lista(function(err, results) {
+                //res.render('proverbios/lista', {lista: results});
+            //});
         });
 
 
