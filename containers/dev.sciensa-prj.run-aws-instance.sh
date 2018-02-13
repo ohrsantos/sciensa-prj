@@ -132,7 +132,8 @@ new_instance_id=$($AWS --output json ec2 run-instances $INSTANCE_DRY_RUN --image
 echo "Instance created, summary:"
 $AWS ec2 describe-instances --filters "Name=instance-id, Values=$new_instance_id"
 
-sleep 10
+echo "Waiting for the instance reach running state..."
+sleep 30
 
 echo "Attaching instances to their respective target groups..."
 $AWS  elbv2 register-targets --target-group-arn arn:aws:elasticloadbalancing:us-east-1:606784160785:targetgroup/jenkins-dev/49d5199a83cf3941 --targets Id=$new_instance_id
