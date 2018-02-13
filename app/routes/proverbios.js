@@ -2,18 +2,18 @@
 module.exports = function(app) {
     console.log('module.exports = function(app)');
 
-    var APP_VERSION = '0.02.050a';
+    var APP_VERSION = '0.02.051a';
 
-function log_date_ip(req, path) {
-        var ip;
-        if (req.headers['x-forwarded-for']) {
-            ip = req.headers['x-forwarded-for'].split(",")[0];
-        } else if (req.connection && req.connection.remoteAddress) {
-            ip = req.connection.remoteAddress;
-        } else {
-            ip = req.ip;
-        }console.log(Date() + '| client IP: ' + ip + ' ' + path );
-}
+    function log_date_ip(req, path) {
+            var ip;
+            if (req.headers['x-forwarded-for']) {
+                ip = req.headers['x-forwarded-for'].split(",")[0];
+            } else if (req.connection && req.connection.remoteAddress) {
+                ip = req.connection.remoteAddress;
+            } else {
+                ip = req.ip;
+            }console.log(Date() + '| client IP: ' + ip + ' ' + path );
+    }
 
     app.get('/', function(req, res) {
         var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
@@ -39,7 +39,7 @@ function log_date_ip(req, path) {
         connection.end();
     });
 
-    app.post('/proverbios/form', function(req, res) {
+    app.get('/proverbios/form', function(req, res) {
         var connection = app.infra.connectionFactory();
         var ProverbiosDAO = new app.infra.ProverbiosDAO(connection);
 
