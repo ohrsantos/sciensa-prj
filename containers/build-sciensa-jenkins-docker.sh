@@ -1,5 +1,6 @@
 #!/bin/bash
 
+VERSION="04"
 SCIENSA_JENKINS_HOME=/var/lib/docker/volumes/jenkins_docker_home/_data
 WORK_DIR=$(pwd)
 
@@ -16,8 +17,8 @@ mv sciensa-jenkins.tar.gz $WORK_DIR
 
 cd -
 
-docker build -f Dockerfile.sciensa-jenkins-docker  -t ohrsan/sciensa-jenkins-docker:3 .
+docker build -f Dockerfile.sciensa-jenkins-docker  -t ohrsan/sciensa-jenkins-docker:$VERSION .
 
 docker login -u=ohrsan -p=bomdia01
 
-docker push ohrsan/sciensa-jenkins-docker:3
+docker push ohrsan/sciensa-jenkins-docker:$VERSION
