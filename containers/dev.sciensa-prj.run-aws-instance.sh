@@ -33,7 +33,7 @@ INSTANCE_TYPE="t2.micro"
 INSTANCE_COUNT="1"
 INSTANCE_DATA_FILE="user-data.txt"
 
-RANCHER_SERVER_CONTAINER="sudo docker run -d --restart=unless-stopped -p 8081:8080 rancher/server:stable"
+RANCHER_SERVER_CONTAINER="docker run -d --restart=unless-stopped -p 8081:8080 --name rancher-server rancher/server:stable"
 
 JENKINS_CONTAINER="docker run -d --rm -u root\
                    -v /var/run/docker.sock:/var/run/docker.sock -v jenkins_docker_home:/var/jenkins_home\
