@@ -3,14 +3,9 @@
 #234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
 ################################################################################
 SCRIPT_NAME="rancher-server.run-aws-instance"
-VERSION="0.02a"
+VERSION="0.01a"
 AUTHOR="Orlando Hehl Rebelo dos Santos"
 DATE_INI="13-02-2018"
-DATE_END="13-02-2018"
-################################################################################
-VERSION="0.19a"
-AUTHOR="Orlando Hehl Rebelo dos Santos"
-DATE_INI="14-01-2018"
 DATE_END="13-02-2018"
 ################################################################################
 #Changes:
@@ -24,10 +19,12 @@ DATE_END="13-02-2018"
 PROFILE_USR="a1"
 REGION="us-east-1"
 
-if [[ $1 != "CREATE" ]]; then INSTANCE_DRY_RUN="--dry-run"; fi
+if [[ $1 != "CREATE" ]]; then
+    INSTANCE_DRY_RUN="--dry-run"
+fi
 INSTANCE_KEY_PAIR="ohrs-aws-key-file"
 INSTANCE_SECURITY_GRP="ohrs-default"
-INSTANCE_NAME="DEV-lab-ohrs"
+INSTANCE_NAME="rancher-server"
 INSTANCE_USR="ec2-user"
 INSTANCE_AMI_ID="ami-428aa838"
 INSTANCE_TYPE="t2.micro"
@@ -103,10 +100,10 @@ user_data=(
 #"${CPPCMS_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1"
 #"${TUTORIAL_APP_METEOR_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1"
 
-"chmod  g+rx /var/lib"
-"chmod  g+rx /var/lib/docker"
-"chmod -R g+rx /var/lib/docker/volumes"
-"chown -R ec2-user:ec2-user /var/lib/docker/volumes/${TUTORIAL_APP_METEOR_CONTAINER_NAME}/_data"
+#"chmod  g+rx /var/lib"
+#"chmod  g+rx /var/lib/docker"
+#"chmod -R g+rx /var/lib/docker/volumes"
+#"chown -R ec2-user:ec2-user /var/lib/docker/volumes/${TUTORIAL_APP_METEOR_CONTAINER_NAME}/_data"
 
 #Creating  /etc/rc.d/rc.local:
 "echo sleep 15 >> /etc/rc.d/rc.local"
