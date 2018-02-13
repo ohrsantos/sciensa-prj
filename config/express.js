@@ -9,7 +9,7 @@ module.exports = function() {
     app.set('views', './app/views');
     app.use(express.static('./app/public'));
 
-    app.use(bodyParser.urlencoded());
+    app.use(bodyParser.urlencoded({extended: true}));
 
     load('routes', {cwd: 'app'})
         .then('infra')
