@@ -3,10 +3,10 @@
 #234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
 ################################################################################
 SCRIPT_NAME="rancher-server.run-aws-instance"
-VERSION="0.01a"
+VERSION="0.02a"
 AUTHOR="Orlando Hehl Rebelo dos Santos"
 DATE_INI="13-02-2018"
-DATE_END="13-02-2018"
+DATE_END="14-02-2018"
 ################################################################################
 #Changes:
 #
@@ -129,7 +129,11 @@ for index in "${!user_data[@]}"; do
 done
 
 echo "Initializing instance..."
-new_instance_id=$($AWS --output json ec2 run-instances $INSTANCE_DRY_RUN --image-id  $INSTANCE_AMI_ID --count $INSTANCE_COUNT --instance-type $INSTANCE_TYPE --key-name $INSTANCE_KEY_PAIR --security-groups $INSTANCE_SECURITY_GRP --user-data file://$(pwd)/$INSTANCE_DATA_FILE --tag-specifications "[ { \"ResourceType\": \"instance\", \"Tags\": [ { \"Key\": \"Name\", \"Value\": \"${INSTANCE_NAME}\" } ] } ] " | grep InstanceId  | tr -d ' ",' | awk -F: '{print $2}')
+new_instance_id=$($AWS --output json ec2 run-instances $INSTANCE_DRY_RUN --image-id  $INSTANCE_AMI_ID \
+                       --count $INSTANCE_COUNT --instance-type $INSTANCE_TYPE --key-name $INSTANCE_KEY_PAIR \
+                       --security-groups $INSTANCE_SECURITY_GRP --user-data file://$(pwd)/$INSTANCE_DATA_FILE \
+                       --tag-specifications "[ { \"ResourceType\": \"instance\", \"Tags\": [ { \"Key\": \"Name\", \"Value\": \"${INSTANCE_NAME}\" } ] } ] " \
+                                             | grep InstanceId  | tr -d ' ",' | awk -F: '{print $2}')
     
 echo "Instance created, summary:"
 $AWS ec2 describe-instances --filters "Name=instance-id, Values=$new_instance_id"
