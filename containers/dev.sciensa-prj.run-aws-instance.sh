@@ -7,7 +7,7 @@ SCRIPT_NAME="dev.run-aws-instance"
 #instance launch. Note that it contains variables and container run command
 #if container will not be used, dissmis those parametrization accordantly
 ################################################################################
-VERSION="0.20a"
+VERSION="0.21a"
 AUTHOR="Orlando Hehl Rebelo dos Santos"
 DATE_INI="14-01-2018"
 DATE_END="14-02-2018"
@@ -133,6 +133,7 @@ done
 
 echo "Initializing instance..."
 new_instance_id=$($AWS --output json ec2 run-instances $INSTANCE_DRY_RUN --image-id  $INSTANCE_AMI_ID \
+                       --credit-specification CpuCredits=unlimited \
                        --count $INSTANCE_COUNT --instance-type $INSTANCE_TYPE --key-name $INSTANCE_KEY_PAIR \
                        --security-groups $INSTANCE_SECURITY_GRP --user-data file://$(pwd)/$INSTANCE_DATA_FILE \
                        --tag-specifications "[ { \"ResourceType\": \"instance\", \"Tags\": [ { \"Key\": \"Name\", \"Value\": \"${INSTANCE_NAME}\" } ] } ] " \
