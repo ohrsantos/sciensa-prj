@@ -3,7 +3,7 @@
 #234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
 ################################################################################
 SCRIPT_NAME="rancher-server.run-aws-instance"
-VERSION="0.02a"
+VERSION="0.03a"
 AUTHOR="Orlando Hehl Rebelo dos Santos"
 DATE_INI="13-02-2018"
 DATE_END="14-02-2018"
@@ -112,10 +112,10 @@ user_data=(
 
 "echo '#docker pull node:latest >> /home/ec2-user/instance-creation.log 2>&1' >> /etc/rc.d/rc.local"
 "echo \"${RANCHER_SERVER_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1\" >> /etc/rc.d/rc.local"
-"echo \"#${SCIENSA_APP_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1\" >> /etc/rc.d/rc.local"
-"echo \"#${JENKINS_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1\" >> /etc/rc.d/rc.local"
-"echo \"#${CPPCMS_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1\" >> /etc/rc.d/rc.local"
-"echo \"#${TUTORIAL_APP_METEOR_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1\" >> /etc/rc.d/rc.local"
+#"echo \"${SCIENSA_APP_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1\" >> /etc/rc.d/rc.local"
+#"echo \"${JENKINS_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1\" >> /etc/rc.d/rc.local"
+#"echo \"${CPPCMS_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1\" >> /etc/rc.d/rc.local"
+#"echo \"${TUTORIAL_APP_METEOR_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1\" >> /etc/rc.d/rc.local"
 )
 
 
