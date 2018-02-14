@@ -51,6 +51,7 @@ module.exports = function(app) {
     });
 
     app.post('/proverbios', function(req, res) {
+        console.log(Date() + ' app.get(\'/proverbios\', ...)');
         var connection = app.infra.connectionFactory();
         var ProverbiosDAO = new app.infra.ProverbiosDAO(connection);
 
