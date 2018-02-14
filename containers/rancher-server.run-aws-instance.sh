@@ -125,7 +125,7 @@ user_data=(
 > $INSTANCE_DATA_FILE
 for index in "${!user_data[@]}"; do 
     echo "${user_data[$index]}" >> $INSTANCE_DATA_FILE
-    echo "${user_data[$index]}" 
+    #echo "${user_data[$index]}" 
 done
 
 echo "Initializing instance..."
