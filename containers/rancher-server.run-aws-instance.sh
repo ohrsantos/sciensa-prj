@@ -66,7 +66,7 @@ user_data=(
 #set locale
 "localectl set-locale LANG=en_US.utf8"
 
-"yum install ksh git docker tree -y"
+"yum install ksh git docker tree htop -y"
 
 #Add the ec2-user to the root group 
 "usermod -a -G root ec2-user"
