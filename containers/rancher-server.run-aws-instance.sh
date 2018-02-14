@@ -93,7 +93,7 @@ user_data=(
 "sleep 15"
 
 "docker login -u=ohrsan -p=bomdia01 >> /home/ec2-user/instance-creation.log 2>&1"
-"docker pull node:latest >> /home/ec2-user/instance-creation.log 2>&1"
+#"docker pull node:latest >> /home/ec2-user/instance-creation.log 2>&1"
 "${RANCHER_SERVER_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1"
 #"${SCIENSA_APP_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1"
 #"${JENKINS_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1"
