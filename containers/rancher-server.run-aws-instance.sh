@@ -3,10 +3,10 @@
 #234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
 ################################################################################
 SCRIPT_NAME="rancher-server.run-aws-instance"
-VERSION="0.04a"
+VERSION="0.05a"
 AUTHOR="Orlando Hehl Rebelo dos Santos"
 DATE_INI="13-02-2018"
-DATE_END="14-02-2018"
+DATE_END="15-02-2018"
 ################################################################################
 #Changes:
 #
@@ -33,19 +33,19 @@ INSTANCE_DATA_FILE="user-data.txt"
 
 RANCHER_SERVER_CONTAINER="docker run -d --restart=unless-stopped -p 8081:8080 --name rancher-server rancher/server:stable"
 
-#JENKINS_CONTAINER="docker run -d --rm -u root\
-#                   -v /var/run/docker.sock:/var/run/docker.sock -v jenkins_docker_home:/var/jenkins_home\
-#                   -p 8080:8080 -p 50000:50000\
-#                   --name dev-sciensa-jenkins-docker\
-#                   ohrsan/sciensa-jenkins-docker:04"
-#
-#SCIENSA_APP_CONTAINER="PUBLIC_DNS=NA APP_ENV=DEV docker run -d --rm -e APP_ENV -e PUBLIC_DNS\
-#              -p 3000:3000 -p 3001:3001 -v /var/www  --name sciensa-app-DEV ohrsan/node-sciensa-prj:DEV"
-#
-#CPPCMS_CONTAINER="docker run -it --rm -u root -v /opt/cppcms  -p 3333:8080  --name dev-cppcms-docker ohrsan/cppcms:v1"
-#
-#TUTORIAL_APP_METEOR_CONTAINER_NAME=app-test3-meteor
-#TUTORIAL_APP_METEOR_CONTAINER="docker run -d --rm  -p 3333:3000 -v ${TUTORIAL_APP_METEOR_CONTAINER_NAME}:/var/meteor --name ${TUTORIAL_APP_METEOR_CONTAINER_NAME} ohrsan/${TUTORIAL_APP_METEOR_CONTAINER_NAME}:1"
+JENKINS_CONTAINER="docker run -d --rm -u root\
+                   -v /var/run/docker.sock:/var/run/docker.sock -v jenkins_docker_home:/var/jenkins_home\
+                   -p 8080:8080 -p 50000:50000\
+                   --name dev-sciensa-jenkins-docker\
+                   ohrsan/sciensa-jenkins-docker:04"
+
+SCIENSA_APP_CONTAINER="PUBLIC_DNS=NA APP_ENV=DEV docker run -d --rm -e APP_ENV -e PUBLIC_DNS\
+              -p 3000:3000 -p 3001:3001 -v /var/www  --name sciensa-app-DEV ohrsan/node-sciensa-prj:DEV"
+
+CPPCMS_CONTAINER="docker run -it --rm -u root -v /opt/cppcms  -p 3333:8080  --name dev-cppcms-docker ohrsan/cppcms:v1"
+
+TUTORIAL_APP_METEOR_CONTAINER_NAME=app-test3-meteor
+TUTORIAL_APP_METEOR_CONTAINER="docker run -d --rm  -p 3333:3000 -v ${TUTORIAL_APP_METEOR_CONTAINER_NAME}:/var/meteor --name ${TUTORIAL_APP_METEOR_CONTAINER_NAME} ohrsan/${TUTORIAL_APP_METEOR_CONTAINER_NAME}:1"
 
 ################################################################################
 # Macros:
