@@ -100,9 +100,9 @@ user_data=(
 #"${CPPCMS_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1"
 #"${TUTORIAL_APP_METEOR_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1"
 
-#"chmod  g+rx /var/lib"
-#"chmod  g+rx /var/lib/docker"
-#"chmod -R g+rx /var/lib/docker/volumes"
+"chmod  g+rx /var/lib"
+"chmod  g+rx /var/lib/docker"
+"chmod -R g+rx /var/lib/docker/volumes"
 #"chown -R ec2-user:ec2-user /var/lib/docker/volumes/${TUTORIAL_APP_METEOR_CONTAINER_NAME}/_data"
 
 #Creating  /etc/rc.d/rc.local:
@@ -111,10 +111,10 @@ user_data=(
 "echo 'docker login -u=ohrsan -p=bomdia01 >> /home/ec2-user/instance-creation.log 2>&1' >> /etc/rc.d/rc.local"
 
 "echo '#docker pull node:latest >> /home/ec2-user/instance-creation.log 2>&1' >> /etc/rc.d/rc.local"
-"echo \"${RANCHER_SERVER_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1\" >> /etc/rc.d/rc.local"
-#"echo \"${SCIENSA_APP_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1\" >> /etc/rc.d/rc.local"
-#"echo \"${JENKINS_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1\" >> /etc/rc.d/rc.local"
-#"echo \"${CPPCMS_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1\" >> /etc/rc.d/rc.local"
+"echo \"#${RANCHER_SERVER_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1\" >> /etc/rc.d/rc.local"
+"echo \"#${SCIENSA_APP_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1\" >> /etc/rc.d/rc.local"
+"echo \"#${JENKINS_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1\" >> /etc/rc.d/rc.local"
+"echo \"#${CPPCMS_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1\" >> /etc/rc.d/rc.local"
 #"echo \"${TUTORIAL_APP_METEOR_CONTAINER} >> /home/ec2-user/instance-creation.log 2>&1\" >> /etc/rc.d/rc.local"
 )
 
