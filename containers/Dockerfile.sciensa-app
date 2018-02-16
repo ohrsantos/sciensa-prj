@@ -1,4 +1,4 @@
-FROM node:latest
+FROM ohrsan/base-node-app
 MAINTAINER Orlando Hehl Rebelo dos Santos
 ENV APP_ENV=DEV
 COPY  .  /var/www
