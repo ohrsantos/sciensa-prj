@@ -40,6 +40,12 @@ function start {
     fi
 }
 
+function run_tests {
+    ./is-server-up.sh -D || exit 51
+    ./has-error-string.sh -D || exit 52
+    ./is-rds-select-working.sh -D || exit 53
+}
+
 case $action in
     "STOP" )
         echo "----------------------------------"
@@ -59,6 +65,7 @@ case $action in
         echo "----------------------------------"
         stop
         start
+        run_tests
         ;;
     *)
          echo "Opcao \"$action\"... invalida!"
