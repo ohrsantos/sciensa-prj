@@ -13,6 +13,7 @@ function stop {
     echo ">>>> Parando container sciensa-app-${APP_ENV} ..."
     if docker stop -t3 sciensa-app-${APP_ENV}; then
         echo ">>>> Container parado com sucesso!"
+        docker rm -f sciensa-app-${APP_ENV}
     fi
     echo ">>>> Removendo imagem ..."
     if docker rmi -f ohrsan/node-sciensa-prj:${APP_ENV}; then
