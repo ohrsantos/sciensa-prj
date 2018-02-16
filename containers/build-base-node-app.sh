@@ -1,5 +1,5 @@
 #!/bin/bash
-docker  build -f Dockerfile.base-node-app -t ohrsan/base-node-app
+docker build -f Dockerfile.base-node-app -t ohrsan/base-node-app .
 
 docker login -u=ohrsan -p=bomdia01
 
