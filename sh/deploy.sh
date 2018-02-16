@@ -41,9 +41,13 @@ function start {
 }
 
 function run_tests {
-    ./is-server-up.sh -D || exit 51
-    ./has-error-string.sh -D || exit 52
-    ./is-rds-select-working.sh -D || exit 53
+    if ! ./is-server-up.sh -D  && ./has-error-string.sh -D && ./is-rds-select-working.sh -D; then
+         TESTS=FAILED
+    fi
+
+    stop
+
+    if [[ $TESTS == FAILED ]]; then exit 50; fi
 }
 
 case $action in
