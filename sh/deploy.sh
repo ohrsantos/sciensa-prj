@@ -41,8 +41,10 @@ function start {
 }
 
 function run_tests {
+    echo ">>>> Testando a aplicacao..."
     if ! ./is-server-up.sh -D  && ./has-error-string.sh -D && ./is-rds-select-working.sh -D; then
-         TESTS=FAILED
+        TESTS=FAILED
+        echo ">>>> Testes falharam!"
     fi
 
     stop
