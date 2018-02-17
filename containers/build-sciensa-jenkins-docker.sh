@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="04"
+VERSION="05"
 SCIENSA_JENKINS_HOME=/var/lib/docker/volumes/jenkins_docker_home/_data
 WORK_DIR=$(pwd)
 
