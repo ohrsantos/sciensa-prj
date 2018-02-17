@@ -3,7 +3,7 @@
 #234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
 ################################################################################
 SCRIPT_NAME="rancher-server.run-aws-instance"
-VERSION="0.07a"
+VERSION="0.08a"
 AUTHOR="Orlando Hehl Rebelo dos Santos"
 DATE_INI="13-02-2018"
 DATE_END="17-02-2018"
@@ -61,7 +61,7 @@ user_data=(
 
 "#!/bin/bash"
 
-"dd if=/dev/zero of=/var/sys-vmem.swap bs=1024 count=524288"
+"dd if=/dev/zero of=/var/sys-vmem.swap bs=1024 count=1048576"
 
 "chmod 600 /var/sys-vmem.swap"
 
@@ -141,12 +141,12 @@ done
 
 echo "Initializing instance..."
 new_instance_id=$($AWS --output json ec2 run-instances $INSTANCE_DRY_RUN --image-id  $INSTANCE_AMI_ID \
-                       --credit-specification CpuCredits=unlimited \
                        --count $INSTANCE_COUNT --instance-type $INSTANCE_TYPE --key-name $INSTANCE_KEY_PAIR \
                        --security-groups $INSTANCE_SECURITY_GRP --user-data file://$(pwd)/$INSTANCE_DATA_FILE \
                        --tag-specifications "[ { \"ResourceType\": \"instance\", \"Tags\": [ { \"Key\": \"Name\", \"Value\": \"${INSTANCE_NAME}\" } ] } ] " \
                                              | grep InstanceId  | tr -d ' ",' | awk -F: '{print $2}')
     
+                       #--credit-specification CpuCredits=unlimited \
 echo "Instance created, summary:"
 $AWS ec2 describe-instances --filters "Name=instance-id, Values=$new_instance_id"
 
