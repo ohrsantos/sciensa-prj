@@ -3,10 +3,10 @@
 #234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
 ################################################################################
 SCRIPT_NAME="rancher-server.run-aws-instance"
-VERSION="0.05a"
+VERSION="0.06a"
 AUTHOR="Orlando Hehl Rebelo dos Santos"
 DATE_INI="13-02-2018"
-DATE_END="15-02-2018"
+DATE_END="17-02-2018"
 ################################################################################
 #Changes:
 #
@@ -59,6 +59,16 @@ INSTANCES_TMP_FILE=".aws-shell.tmp"
 user_data=(
 
 "#!/bin/bash"
+
+"dd if=/dev/zero of=/var/sys-vmem.swap bs=1024 count=524288"
+
+"chmod 600 /var/sys-vmem.swap"
+
+"/sbin/mkswap /var/sys-vmem.swap"
+
+"/sbin/swapon /var/sys-vmem.swap"
+
+"echo '/var/sys-vmem.swap   swap        swap    defaults        0   0' >> /etc/fstab"
 
 #Update the installed packages and package cache on your instance.
 "yum update -y"
