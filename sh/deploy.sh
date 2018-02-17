@@ -24,6 +24,10 @@ function stop {
 
 }
 
+#rancher --url http://10.211.55.38:8080/v2-beta/projects/1a5 --access-key D9C4A756AC8A5BD492AF --secret-key HcnLaZzJskb2udNNeWdrYt7ZJ8HRFCH2fMuJuYYy  --env Default up -d --pull  --stack node-app-stack --force-upgrade
+#rancher --url http://10.211.55.38:8080/v2-beta/projects/1a5 --access-key D9C4A756AC8A5BD492AF --secret-key HcnLaZzJskb2udNNeWdrYt7ZJ8HRFCH2fMuJuYYy  --env Default up -d --pull --stack node-app-stack --confirm-upgrade
+#rancher --url http://10.211.55.38:8080/v2-beta/projects/1a5 --access-key D9C4A756AC8A5BD492AF --secret-key HcnLaZzJskb2udNNeWdrYt7ZJ8HRFCH2fMuJuYYy  --env Default scale node-app=4
+
 function start {
     if git pull https://github.com/ohrsantos/sciensa-prj.git; then
         echo ">>>> Codigos da aplicacao atualizados com sucesso!"
