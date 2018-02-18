@@ -5,3 +5,4 @@ COPY  .  /var/www
 WORKDIR /var/www
 ENTRYPOINT nodemon app
 EXPOSE 3000
+EXPOSE 3001
