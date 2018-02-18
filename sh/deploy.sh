@@ -48,10 +48,6 @@ function run_tests {
         TESTS=FAILED
         echo ">>>> Testes falharam!"
     fi
-
-    stop
-
-    if [[ $TESTS == FAILED ]]; then exit 50; fi
 }
 
 case $action in
@@ -78,6 +74,7 @@ case $action in
         run_container
         run_tests
         stop_container
+        if [[ $TESTS == FAILED ]]; then exit 50; fi
         ;;
     *)
          echo "Opcao \"$action\"... invalida!"
