@@ -2,7 +2,7 @@
 module.exports = function(app) {
     console.log('module.exports = function(app)');
 
-    var APP_VERSION = '0.02.055a';
+    var APP_VERSION = '0.02.056a';
 
     function log_date_ip(req, path) {
             var ip;
