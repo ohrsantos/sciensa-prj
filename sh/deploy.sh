@@ -9,40 +9,36 @@ APP_PORT=${4}
 
 echo ">>>> deploy-${APP_ENV} v:0.34a"
 
-function stop {
+function stop_container {
     echo ">>>> Parando container sciensa-app-${APP_ENV} ..."
     if docker stop -t3 sciensa-app-${APP_ENV}; then
         echo ">>>> Container parado com sucesso!"
-        docker rm -f sciensa-app-${APP_ENV}
     fi
+}
+
+function remove_img {
     echo ">>>> Removendo imagem ..."
     if docker rmi -f ohrsan/node-sciensa-prj:${APP_ENV}; then
         echo ">>>> Imagem removida com sucesso ..."
     else
         echo ">>>> ATENCAO: A imagem nao foi removida com sucesso ..."
     fi
-
 }
-
 #rancher --url http://10.211.55.38:8080/v2-beta/projects/1a5 --access-key D9C4A756AC8A5BD492AF --secret-key HcnLaZzJskb2udNNeWdrYt7ZJ8HRFCH2fMuJuYYy  --env Default up -d --pull  --stack node-app-stack --force-upgrade
 #rancher --url http://10.211.55.38:8080/v2-beta/projects/1a5 --access-key D9C4A756AC8A5BD492AF --secret-key HcnLaZzJskb2udNNeWdrYt7ZJ8HRFCH2fMuJuYYy  --env Default up -d --pull --stack node-app-stack --confirm-upgrade
 #rancher --url http://10.211.55.38:8080/v2-beta/projects/1a5 --access-key D9C4A756AC8A5BD492AF --secret-key HcnLaZzJskb2udNNeWdrYt7ZJ8HRFCH2fMuJuYYy  --env Default scale node-app=4
 
-function start {
-    if git pull https://github.com/ohrsantos/sciensa-prj.git; then
-        echo ">>>> Codigos da aplicacao atualizados com sucesso!"
-    else
-        echo "git pull, falhou!!!"
-        exit 2
-    fi
-    echo ">>>> Construindo a imagem com o codigo atualizado..."
+function build_img {
     if docker  build -f containers/Dockerfile.sciensa-app -t ohrsan/node-sciensa-prj:${APP_ENV} .; then
         echo ">>>> Imagem construida com sucesso!"
-        echo ">>>> Inicializando container sciensa-app-${APP_ENV} $HOST:$APP_PORT"
-        docker run -d  --rm -e APP_ENV -e PUBLIC_DNS -p $APP_PORT:3000 -p 3001:3001 -v /var/www  --name sciensa-app-${APP_ENV} ohrsan/node-sciensa-prj:${APP_ENV} || exit 3
     else
-        exit 4
+        exit 60
     fi
+}
+
+function run_container {
+        echo ">>>> Inicializando container sciensa-app-${APP_ENV} $HOST:$APP_PORT"
+         docker run -d  --rm -e APP_ENV -e PUBLIC_DNS -p $APP_PORT:3000 -p 3001:3001 -v /var/www  --name sciensa-app-${APP_ENV} ohrsan/node-sciensa-prj:${APP_ENV} || exit 3
 }
 
 function run_tests {
@@ -75,9 +71,13 @@ case $action in
         echo "----------------------------------"
         echo "      DEPLOYING $APP_ENV "
         echo "----------------------------------"
-        stop
-        start
+      
+        remove_img
+        build_img
+        stop_container
+        run_container
         run_tests
+        stop_container
         ;;
     *)
          echo "Opcao \"$action\"... invalida!"
