@@ -1,0 +1,53 @@
+version: '2'
+services:
+  Jenkins-CI-SRV:
+    privileged: true
+    image: ohrsan/sciensa-jenkins-docker:04
+    stdin_open: true
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    - jenkins_docker_home:/var/jenkins_home
+    tty: true
+    user: root
+    labels:
+      io.rancher.container.pull_image: always
+  Node-App-DEV-LB:
+    image: rancher/lb-service-haproxy:v0.7.15
+    ports:
+    - 3000:3000/tcp
+    labels:
+      io.rancher.container.agent.role: environmentAdmin,agent
+      io.rancher.container.agent_service.drain_provider: 'true'
+      io.rancher.container.create_agent: 'true'
+  Node-App-PROD-SRV:
+    image: ohrsan/node-sciensa-prj:DEV
+    environment:
+      APP_ENV: PROD
+    stdin_open: true
+    tty: true
+    labels:
+      io.rancher.container.pull_image: always
+  Node-App-DEV-SRV:
+    image: ohrsan/node-sciensa-prj:DEV
+    environment:
+      APP_ENV: DEV
+    stdin_open: true
+    tty: true
+    labels:
+      io.rancher.container.pull_image: always
+  Jenkins-LB:
+    image: rancher/lb-service-haproxy:v0.7.15
+    ports:
+    - 8080:8080/tcp
+    labels:
+      io.rancher.container.agent.role: environmentAdmin,agent
+      io.rancher.container.agent_service.drain_provider: 'true'
+      io.rancher.container.create_agent: 'true'
+  Node-App-RPOD-LB:
+    image: rancher/lb-service-haproxy:v0.7.15
+    ports:
+    - 3001:3001/tcp
+    labels:
+      io.rancher.container.agent.role: environmentAdmin,agent
+      io.rancher.container.agent_service.drain_provider: 'true'
+      io.rancher.container.create_agent: 'true'
