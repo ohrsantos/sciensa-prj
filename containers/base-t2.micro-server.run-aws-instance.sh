@@ -156,7 +156,7 @@ sleep 60
 echo "Attaching instances to their respective target groups..."
 #$AWS  elbv2 register-targets --target-group-arn arn:aws:elasticloadbalancing:us-east-1:606784160785:targetgroup/rancher-server/4c4da2ec95c5f5d7 --targets Id=$new_instance_id
 $AWS  elbv2 register-targets --target-group-arn arn:aws:elasticloadbalancing:us-east-1:606784160785:targetgroup/jenkins-dev/49d5199a83cf3941 --targets Id=$new_instance_id
-$AWS  elbv2 register-targets --target-group-arn arn:aws:elasticloadbalancing:us-east-1:606784160785:targetgroup/sciensa-dev/30895b398b8dd2bb --targets Id=$new_instance_id
+$AWS  elbv2 register-targets --target-group-arn arn:aws:elasticloadbalancing:us-east-1:606784160785:targetgroup/Node-App-DEV/0d2d1ab2758493f1 --targets Id=$new_instance_id
 $AWS  elbv2 register-targets --target-group-arn arn:aws:elasticloadbalancing:us-east-1:606784160785:targetgroup/Node-App-PROD/e4dca5b928d7e4a4 --targets Id=$new_instance_id
 $AWS  elbv2 register-targets --target-group-arn arn:aws:elasticloadbalancing:us-east-1:606784160785:targetgroup/cppcms-dev/4c9decd880e3678e  --targets Id=$new_instance_id
 
