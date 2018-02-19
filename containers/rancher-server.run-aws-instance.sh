@@ -24,7 +24,7 @@ if [[ $1 != "CREATE" ]]; then
 fi
 INSTANCE_KEY_PAIR="ohrs-aws-key-file"
 INSTANCE_SECURITY_GRP="ohrs-default"
-INSTANCE_NAME="rancher-server"
+INSTANCE_NAME="Rancher-Server-Node-00"
 INSTANCE_USR="ec2-user"
 INSTANCE_AMI_ID="ami-428aa838"
 INSTANCE_TYPE="t2.micro"
@@ -154,7 +154,12 @@ echo "Waiting for the instance reach running state..."
 sleep 60
 
 echo "Attaching instances to their respective target groups..."
+
 $AWS  elbv2 register-targets --target-group-arn arn:aws:elasticloadbalancing:us-east-1:606784160785:targetgroup/rancher-server/4c4da2ec95c5f5d7 --targets Id=$new_instance_id
 $AWS  elbv2 register-targets --target-group-arn arn:aws:elasticloadbalancing:us-east-1:606784160785:targetgroup/jenkins-dev/49d5199a83cf3941 --targets Id=$new_instance_id
-$AWS  elbv2 register-targets --target-group-arn arn:aws:elasticloadbalancing:us-east-1:606784160785:targetgroup/sciensa-dev/30895b398b8dd2bb --targets Id=$new_instance_id
+$AWS  elbv2 register-targets --target-group-arn arn:aws:elasticloadbalancing:us-east-1:606784160785:targetgroup/Node-App-DEV/0d2d1ab2758493f1 --targets Id=$new_instance_id
+$AWS  elbv2 register-targets --target-group-arn arn:aws:elasticloadbalancing:us-east-1:606784160785:targetgroup/Node-App-PROD/e4dca5b928d7e4a4 --targets Id=$new_instance_id
 $AWS  elbv2 register-targets --target-group-arn arn:aws:elasticloadbalancing:us-east-1:606784160785:targetgroup/cppcms-dev/4c9decd880e3678e  --targets Id=$new_instance_id
+
+aws-sh-tk -u $PROFILE_USR -r $REGION  -l -a ssh -K $INSTANCE_KEY_PAIR
+
