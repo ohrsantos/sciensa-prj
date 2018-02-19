@@ -142,7 +142,7 @@ done
 echo "Initializing instance..."
 new_instance_id=$($AWS --output json ec2 run-instances $INSTANCE_DRY_RUN --image-id  $INSTANCE_AMI_ID \
                        --count $INSTANCE_COUNT --instance-type $INSTANCE_TYPE --key-name $INSTANCE_KEY_PAIR \
-                       --block-device-mapping /dev/sda1=:12:true\
+                       --block-device-mapping /dev/xvda=:12:true\
                        --security-groups $INSTANCE_SECURITY_GRP --user-data file://$(pwd)/$INSTANCE_DATA_FILE \
                        --tag-specifications "[ { \"ResourceType\": \"instance\", \"Tags\": [ { \"Key\": \"Name\", \"Value\": \"${INSTANCE_NAME}\" } ] } ] " \
                                              | grep InstanceId  | tr -d ' ",' | awk -F: '{print $2}')
