@@ -101,6 +101,8 @@ user_data=(
 
 "curl -o /etc/profile.d/ohrs-profile.sh https://raw.githubusercontent.com/ohrsantos/etc/master/.ohrs.profile"
 
+"sudo -u ec2-user git clone https://github.com/ohrsantos/sciensa-prj.git"
+
 "sleep 15"
 
 "docker login -u=ohrsan -p=bomdia01 >> /home/ec2-user/instance-creation.log 2>&1"
