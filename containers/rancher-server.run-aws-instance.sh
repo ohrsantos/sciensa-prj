@@ -3,10 +3,10 @@
 #234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
 ################################################################################
 SCRIPT_NAME="rancher-server.run-aws-instance"
-VERSION="0.09a"
+VERSION="0.10a"
 AUTHOR="Orlando Hehl Rebelo dos Santos"
 DATE_INI="13-02-2018"
-DATE_END="18-02-2018"
+DATE_END="19-02-2018"
 ################################################################################
 #Changes:
 #
@@ -152,7 +152,7 @@ echo "Instance created, summary:"
 $AWS ec2 describe-instances --filters "Name=instance-id, Values=$new_instance_id"
 
 echo "Waiting for the instance reach running state..."
-sleep 60
+sleep 70
 
 echo "Attaching instances to their respective target groups..."
 
@@ -161,6 +161,9 @@ $AWS  elbv2 register-targets --target-group-arn arn:aws:elasticloadbalancing:us-
 $AWS  elbv2 register-targets --target-group-arn arn:aws:elasticloadbalancing:us-east-1:606784160785:targetgroup/Node-App-DEV/0d2d1ab2758493f1 --targets Id=$new_instance_id
 $AWS  elbv2 register-targets --target-group-arn arn:aws:elasticloadbalancing:us-east-1:606784160785:targetgroup/Node-App-PROD/e4dca5b928d7e4a4 --targets Id=$new_instance_id
 $AWS  elbv2 register-targets --target-group-arn arn:aws:elasticloadbalancing:us-east-1:606784160785:targetgroup/cppcms-dev/4c9decd880e3678e  --targets Id=$new_instance_id
+
+aws-sh-tk -u $PROFILE_USR -r $REGION  -l -a scp -K $INSTANCE_KEY_PAIR ~/Downloads/rancher-compose-linux-amd64-v0.12.5.tar.gz  \~
+aws-sh-tk -u $PROFILE_USR -r $REGION  -l -a scp -K $INSTANCE_KEY_PAIR ~/Downloads/rancher-linux-amd64-v0.6.7.tar.gz  \~
 
 aws-sh-tk -u $PROFILE_USR -r $REGION  -l -a ssh -K $INSTANCE_KEY_PAIR
 
