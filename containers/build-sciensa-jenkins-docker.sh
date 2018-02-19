@@ -18,7 +18,7 @@ mv sciensa-jenkins.tar.gz $WORK_DIR
 
 cd -
 
-docker build -f Dockerfile.sciensa-jenkins-docker  -t ohrsan/sciensa-jenkins-docker:$VERSION .
+docker build -f container/Dockerfile.sciensa-jenkins-docker  -t ohrsan/sciensa-jenkins-docker:$VERSION .
 
 docker login -u=ohrsan -p=bomdia01
 
