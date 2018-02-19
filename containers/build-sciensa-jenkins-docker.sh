@@ -9,6 +9,10 @@ cd $JENKINS_HOME
 sudo rm -rf jobs/Node-App-DEV/nextBuildNumber jobs/Node-App-DEV/builds/*
 sudo rm -rf jobs/Node-App-PROD/nextBuildNumber jobs/Node-App-PROD/builds/*
 
+sudo rm -rf jobs/CppCMS-App-DEV/nextBuildNumber jobs/CppCMS-App-DEV/builds/*
+#For future use
+#sudo rm -rf jobs/Node-App-PROD/nextBuildNumber jobs/Node-App-PROD/builds/* 
+
 tar zcvf jenkins_home.tar.gz *
 
 #This version is for the case with need hidden files
