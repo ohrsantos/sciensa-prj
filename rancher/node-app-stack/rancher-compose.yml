@@ -49,7 +49,7 @@ services:
       interval: 2000
       strategy: recreate
       reinitializing_timeout: 60000
-  Node-App-RPOD-LB:
+  Node-App-PROD-LB:
     scale: 1
     start_on_create: true
     lb_config:
