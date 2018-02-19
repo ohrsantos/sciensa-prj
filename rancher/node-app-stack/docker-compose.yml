@@ -2,7 +2,7 @@ version: '2'
 services:
   Jenkins-CI-SRV:
     privileged: true
-    image: ohrsan/sciensa-jenkins-docker:04
+    image: ohrsan/sciensa-jenkins-docker:latest
     stdin_open: true
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
@@ -43,7 +43,7 @@ services:
       io.rancher.container.agent.role: environmentAdmin,agent
       io.rancher.container.agent_service.drain_provider: 'true'
       io.rancher.container.create_agent: 'true'
-  Node-App-RPOD-LB:
+  Node-App-PROD-LB:
     image: rancher/lb-service-haproxy:v0.7.15
     ports:
     - 3001:3001/tcp
