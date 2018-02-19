@@ -1,12 +1,13 @@
 #!/bin/bash
 
-VERSION="05"
+VERSION="latest"
 SCIENSA_JENKINS_HOME=/var/lib/docker/volumes/jenkins_docker_home/_data
 WORK_DIR=$(pwd)
 
 cd $SCIENSA_JENKINS_HOME
 
-sudo rm -rf jobs/sciensa-prj/nextBuildNumber jobs/sciensa-prj/builds/*
+sudo rm -rf jobs/Node-App-DEV/nextBuildNumber jobs/Node-App-DEV/builds/*
+sudo rm -rf jobs/Node-App-PROD/nextBuildNumber jobs/Node-App-PROD/builds/*
 
 tar zcvf sciensa-jenkins.tar.gz *
 
