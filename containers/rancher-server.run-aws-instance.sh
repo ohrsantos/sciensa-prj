@@ -171,3 +171,4 @@ aws-sh-tk -u $PROFILE_USR -r $REGION  -l -a scp -K $INSTANCE_KEY_PAIR ~/Download
 aws-sh-tk -u $PROFILE_USR -r $REGION  -l -a sr-cmd -K $INSTANCE_KEY_PAIR 'sudo mv rancher-compose /usr/bin'
 aws-sh-tk -u $PROFILE_USR -r $REGION  -l -a sr-cmd -K $INSTANCE_KEY_PAIR 'sudo mv rancher /usr/bin'
 
+aws-sh-tk -u $PROFILE_USR -r $REGION  -l -a ssh -K $INSTANCE_KEY_PAIR 
