@@ -167,5 +167,7 @@ $AWS  elbv2 register-targets --target-group-arn arn:aws:elasticloadbalancing:us-
 aws-sh-tk -u $PROFILE_USR -r $REGION  -l -a scp -K $INSTANCE_KEY_PAIR ~/Downloads/rancher-compose \~
 aws-sh-tk -u $PROFILE_USR -r $REGION  -l -a scp -K $INSTANCE_KEY_PAIR ~/Downloads/rancher  \~
 
-aws-sh-tk -u $PROFILE_USR -r $REGION  -l -a ssh -K $INSTANCE_KEY_PAIR
+
+aws-sh-tk -u $PROFILE_USR -r $REGION  -l -a sr-cmd -K $INSTANCE_KEY_PAIR 'sudo mv rancher-compose /usr/bin'
+aws-sh-tk -u $PROFILE_USR -r $REGION  -l -a sr-cmd -K $INSTANCE_KEY_PAIR 'sudo mv rancher /usr/bin'
 
