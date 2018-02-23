@@ -164,8 +164,8 @@ $AWS  elbv2 register-targets --target-group-arn arn:aws:elasticloadbalancing:us-
 $AWS  elbv2 register-targets --target-group-arn arn:aws:elasticloadbalancing:us-east-1:606784160785:targetgroup/Node-App-PROD/e4dca5b928d7e4a4 --targets Id=$new_instance_id
 $AWS  elbv2 register-targets --target-group-arn arn:aws:elasticloadbalancing:us-east-1:606784160785:targetgroup/cppcms-dev/4c9decd880e3678e  --targets Id=$new_instance_id
 
-aws-sh-tk -u $PROFILE_USR -r $REGION  -l -a scp -K $INSTANCE_KEY_PAIR ~/Downloads/rancher-compose-linux-amd64-v0.12.5.tar.gz  \~
-aws-sh-tk -u $PROFILE_USR -r $REGION  -l -a scp -K $INSTANCE_KEY_PAIR ~/Downloads/rancher-linux-amd64-v0.6.7.tar.gz  \~
+aws-sh-tk -u $PROFILE_USR -r $REGION  -l -a scp -K $INSTANCE_KEY_PAIR ~/Downloads/rancher-compose \~
+aws-sh-tk -u $PROFILE_USR -r $REGION  -l -a scp -K $INSTANCE_KEY_PAIR ~/Downloads/rancher  \~
 
 aws-sh-tk -u $PROFILE_USR -r $REGION  -l -a ssh -K $INSTANCE_KEY_PAIR
 
