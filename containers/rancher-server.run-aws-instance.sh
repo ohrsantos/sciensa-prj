@@ -31,7 +31,6 @@ INSTANCE_TYPE="t2.micro"
 INSTANCE_COUNT="1"
 INSTANCE_DATA_FILE="user-data.txt"
 
-#sudo docker run -e CATTLE_AGENT_IP="34.204.53.62"  -e CATTLE_HOST_LABELS='HOST=DEV'  --rm --privileged -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/rancher:/var/lib/rancher rancher/agent:v1.2.9 http://aws-alb-lab-942269274.us-east-1.elb.amazonaws.com:8081/v1/scripts/2D8937E7AF2DCBCC2FC4:1514678400000:U7JFGBZLYdv9QhcxTk8z5xAM
 RANCHER_SERVER_CONTAINER="docker run -d --restart=unless-stopped -p 8081:8080 --name rancher-server rancher/server:stable"
 
 JENKINS_CONTAINER="docker run -d --rm -u root\
