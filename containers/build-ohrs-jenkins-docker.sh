@@ -1,5 +1,7 @@
 #!/bin/bash
 
+password=${1}
+
 VERSION="latest"
 JENKINS_HOME=/var/lib/docker/volumes/jenkins_docker_home/_data
 WORK_DIR=$(pwd)
@@ -24,6 +26,6 @@ cd -
 
 docker build -f containers/Dockerfile.ohrs-jenkins  -t ohrsan/ohrs-jenkins:$VERSION .
 
-docker login -u=ohrsan -p=bomdia01
+docker login -u=ohrsan -p=$password
 
 docker push ohrsan/ohrs-jenkins:$VERSION
